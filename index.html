@@ -3,851 +3,557 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aaron Kyune Obed | Web3 Builder</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <title>Aaron Kyune Obed - Web3 Developer</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;500&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
-            --primary-bg: #0a0a0f;
-            --secondary-bg: #1a1a2e;
-            --accent-cyan: #00ffff;
-            --accent-lime: #39ff14;
-            --accent-magenta: #ff0080;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
-            --terminal-green: #00ff41;
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --solana-gradient: linear-gradient(135deg, #9945ff 0%, #14f195 100%);
+            --ethereum-blue: #627eea;
+            --bg-light: #fafbfc;
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --border-light: #e2e8f0;
+            --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
         }
-        
+
         body {
-            background: var(--primary-bg);
-            color: var(--text-primary);
-            font-family: 'Roboto Mono', monospace;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            overflow-x: hidden;
+            color: var(--text-primary);
+            background: var(--bg-light);
+            scroll-behavior: smooth;
         }
-        
-        /* Loading Screen */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--primary-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 1s ease;
-        }
-        
-        .terminal-boot {
-            font-family: 'Roboto Mono', monospace;
-            color: var(--terminal-green);
-            font-size: 14px;
-            text-align: left;
-        }
-        
-        .cursor {
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-        
-        /* Matrix Background */
-        .matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            opacity: 0.1;
-        }
-        
-        /* Header */
-        .header {
+
+        /* Navigation */
+        nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(26, 26, 46, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--accent-cyan);
-            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-light);
             z-index: 1000;
+            padding: 1rem 0;
         }
-        
-        .nav {
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 0 2rem;
         }
-        
+
         .logo {
-            font-family: 'Orbitron', monospace;
-            font-weight: 900;
-            font-size: 1.5rem;
-            color: var(--accent-cyan);
-            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.25rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
+
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
-        
+
         .nav-links a {
-            color: var(--text-secondary);
             text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
             transition: color 0.3s ease;
-            position: relative;
         }
-        
+
         .nav-links a:hover {
-            color: var(--accent-cyan);
+            color: var(--ethereum-blue);
         }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-cyan);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
+
         /* Hero Section */
         .hero {
-            height: 100vh;
+            padding: 8rem 2rem 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--solana-gradient);
+            margin: 0 auto 2rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            background: linear-gradient(45deg, var(--primary-bg), var(--secondary-bg));
+            font-size: 3rem;
+            color: white;
+            font-weight: bold;
+            box-shadow: var(--shadow-soft);
         }
-        
-        .hero-content {
-            text-align: center;
-            z-index: 2;
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        .glitch {
-            font-family: 'Orbitron', monospace;
-            font-size: 4rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            position: relative;
-            color: var(--text-primary);
-            letter-spacing: 3px;
-            animation: glitch 2s infinite;
-        }
-        
-        @keyframes glitch {
-            0%, 100% { transform: translate(0); }
-            10% { transform: translate(-2px, -2px); }
-            20% { transform: translate(2px, 2px); }
-            30% { transform: translate(-2px, 2px); }
-            40% { transform: translate(2px, -2px); }
-            50% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            70% { transform: translate(-2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            90% { transform: translate(-2px, -2px); }
-        }
-        
-        .tagline {
+
+        .hero .subtitle {
             font-size: 1.5rem;
-            margin: 1rem 0;
-            color: var(--accent-cyan);
-            animation: fadeInUp 1s ease 0.5s both;
-        }
-        
-        .hero-subtitle {
-            font-size: 1rem;
             color: var(--text-secondary);
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 1s both;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
         }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
         }
-        
+
         .cta-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            animation: fadeInUp 1s ease 1.5s both;
         }
-        
+
         .btn {
-            padding: 12px 24px;
-            background: transparent;
-            border: 2px solid var(--accent-cyan);
-            color: var(--accent-cyan);
+            padding: 1rem 2rem;
+            border-radius: 50px;
             text-decoration: none;
-            font-family: 'Roboto Mono', monospace;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--accent-cyan);
-            transition: left 0.3s ease;
-            z-index: -1;
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: var(--shadow-soft);
         }
-        
-        .btn:hover::before {
-            left: 0;
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
         }
-        
-        .btn:hover {
-            color: var(--primary-bg);
-        }
-        
+
         .btn-secondary {
-            border-color: var(--accent-lime);
-            color: var(--accent-lime);
+            background: white;
+            color: var(--text-primary);
+            border: 2px solid var(--border-light);
         }
-        
-        .btn-secondary::before {
-            background: var(--accent-lime);
+
+        .btn-secondary:hover {
+            border-color: var(--ethereum-blue);
+            color: var(--ethereum-blue);
         }
-        
-        /* Section Styles */
-        .section {
-            padding: 80px 2rem;
+
+        /* Section Styling */
+        section {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 6rem 2rem;
         }
-        
+
         .section-title {
-            font-family: 'Orbitron', monospace;
             font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-weight: 700;
             text-align: center;
-            color: var(--accent-cyan);
-            position: relative;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
         }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-lime));
-        }
-        
+
         /* About Section */
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
-        
-        .about-image {
-            position: relative;
-        }
-        
-        .avatar {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            border: 3px solid var(--accent-cyan);
-            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: var(--primary-bg);
-            box-shadow: 0 0 30px var(--accent-cyan);
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 30px var(--accent-cyan); }
-            50% { box-shadow: 0 0 50px var(--accent-cyan), 0 0 70px var(--accent-cyan); }
-        }
-        
-        .about-text {
-            font-size: 1.1rem;
+
+        .about-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
             line-height: 1.8;
         }
-        
-        .highlight {
-            color: var(--accent-lime);
-            font-weight: 500;
-        }
-        
+
         /* Projects Section */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+            margin-top: 3rem;
         }
-        
+
         .project-card {
-            background: var(--secondary-bg);
-            border: 1px solid var(--accent-cyan);
+            background: white;
+            border-radius: 20px;
             padding: 2rem;
+            box-shadow: var(--shadow-soft);
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            border: 1px solid var(--border-light);
         }
-        
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .project-card:hover::before {
-            left: 100%;
-        }
-        
+
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+            box-shadow: var(--shadow-hover);
         }
-        
-        .project-title {
-            font-family: 'Orbitron', monospace;
+
+        .project-card h3 {
             font-size: 1.5rem;
-            color: var(--accent-cyan);
+            font-weight: 700;
             margin-bottom: 1rem;
+            color: var(--text-primary);
         }
-        
-        .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .project-tags {
+
+        .project-card .tech-stack {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
-        
-        .tag {
-            background: var(--accent-magenta);
-            color: var(--primary-bg);
-            padding: 4px 8px;
-            font-size: 0.8rem;
+
+        .tech-tag {
+            background: var(--solana-gradient);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
             font-weight: 500;
         }
-        
+
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
         .project-links {
             display: flex;
             gap: 1rem;
         }
-        
+
         .project-link {
-            color: var(--accent-lime);
+            color: var(--ethereum-blue);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: color 0.3s ease;
         }
-        
+
         .project-link:hover {
-            color: var(--accent-cyan);
+            color: var(--text-primary);
         }
-        
+
         /* Skills Section */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
-        
+
         .skill-item {
-            background: var(--secondary-bg);
+            background: white;
             padding: 1.5rem;
+            border-radius: 15px;
             text-align: center;
-            border: 1px solid var(--accent-lime);
+            box-shadow: var(--shadow-soft);
             transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
         }
-        
+
         .skill-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(57, 255, 20, 0.3);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
         }
-        
+
         .skill-icon {
-            font-size: 3rem;
-            color: var(--accent-lime);
+            font-size: 2.5rem;
             margin-bottom: 1rem;
         }
-        
-        .skill-name {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .skill-level {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        
-        /* Contact Section */
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-        
-        .contact-info {
-            background: var(--secondary-bg);
-            padding: 2rem;
-            border: 1px solid var(--accent-magenta);
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .contact-icon {
-            font-size: 1.5rem;
-            color: var(--accent-magenta);
-        }
-        
-        .contact-form {
-            background: var(--secondary-bg);
-            padding: 2rem;
-            border: 1px solid var(--accent-cyan);
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--accent-cyan);
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            background: var(--primary-bg);
-            border: 1px solid var(--accent-cyan);
+
+        .skill-item h4 {
+            font-weight: 600;
             color: var(--text-primary);
-            font-family: 'Roboto Mono', monospace;
         }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            box-shadow: 0 0 10px var(--accent-cyan);
+
+        /* Contact Section */
+        .contact {
+            background: white;
+            border-radius: 30px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-light);
+            text-align: center;
         }
-        
-        /* Terminal Easter Egg */
-        .terminal {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 400px;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid var(--terminal-green);
-            display: none;
-            z-index: 1001;
-        }
-        
-        .terminal-header {
-            background: var(--secondary-bg);
-            padding: 10px;
-            border-bottom: 1px solid var(--terminal-green);
+
+        .contact-links {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
         }
-        
-        .terminal-body {
-            padding: 15px;
-            height: 300px;
-            overflow-y: auto;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 12px;
-            color: var(--terminal-green);
-        }
-        
-        .terminal-input {
+
+        .contact-link {
             display: flex;
             align-items: center;
-            margin-top: 10px;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            background: var(--bg-light);
+            transition: all 0.3s ease;
         }
-        
-        .terminal-prompt {
-            color: var(--accent-cyan);
-            margin-right: 5px;
+
+        .contact-link:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateY(-2px);
         }
-        
-        .terminal-cmd {
-            background: transparent;
-            border: none;
-            color: var(--terminal-green);
-            font-family: 'Roboto Mono', monospace;
-            font-size: 12px;
-            flex: 1;
-            outline: none;
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-light);
         }
-        
-        /* Responsive Design */
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .glitch {
-                font-size: 2.5rem;
-            }
-            
-            .tagline {
-                font-size: 1.2rem;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-            
             .nav-links {
                 display: none;
             }
-            
-            .terminal {
-                width: 90%;
-                right: 5%;
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
             }
         }
-        
-        .hidden {
-            opacity: 0;
+
+        /* Smooth scroll offset for fixed nav */
+        section {
+            scroll-margin-top: 80px;
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="terminal-boot">
-            <div>Initializing Web3 Portfolio...</div>
-            <div>Loading blockchain modules... ████████ 100%</div>
-            <div>Connecting to decentralized network... ████████ 100%</div>
-            <div>Deploying smart contracts... ████████ 100%</div>
-            <div>System ready. Welcome to the future<span class="cursor">_</span></div>
-        </div>
-    </div>
-
-    <!-- Matrix Background -->
-    <canvas class="matrix-bg" id="matrixCanvas"></canvas>
-
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <a href="#" class="logo">AKO.web3</a>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Aaron Kyune</div>
             <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <h1 class="glitch">Aaron Kyune Obed</h1>
-            <p class="tagline">Web3 Engineer • Cyber Builder • Futurist</p>
-            <p class="hero-subtitle">19-year-old Nigerian innovator building the decentralized future</p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn">View Projects</a>
-                <a href="#contact" class="btn btn-secondary">Connect Wallet</a>
-            </div>
+    <section id="home" class="hero">
+        <div class="hero-image">AO</div>
+        <h1>Aaron Kyune Obed</h1>
+        <p class="subtitle">Web3 Developer • Innovator</p>
+        <p class="tagline">Building the future of decentralized applications and blockchain solutions, one smart contract at a time.</p>
+        <div class="cta-buttons">
+            <a href="#projects" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-secondary">Connect With Me</a>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="section" id="about">
-        <h2 class="section-title">About.exe</h2>
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
         <div class="about-content">
-            <div class="about-image">
-                <div class="avatar">
-                    <i class="fas fa-user-astronaut"></i>
-                </div>
-            </div>
-            <div class="about-text">
-                <p>Greetings from the <span class="highlight">digital frontier</span>. I'm Aaron Kyune Obed, a 19-year-old Web3 architect from Nigeria, engineering the next generation of decentralized systems.</p>
-                <p>My mission is to bridge the gap between <span class="highlight">traditional finance and DeFi</span>, creating innovative solutions that empower users in the blockchain ecosystem. From building DAOs to developing AI-powered DePIN networks, I'm constantly pushing the boundaries of what's possible in Web3.</p>
-                <p>When I'm not coding smart contracts or designing tokenomics, you'll find me researching <span class="highlight">zero-knowledge proofs</span>, exploring the metaverse, or contributing to open-source protocols that shape our decentralized future.</p>
-            </div>
+            <p>I'm a 19-year-old Nigerian tech builder passionate about blockchain technology and decentralized innovation. My journey in Web3 has led me to work on cutting-edge projects in DAO tooling, decentralized identity, and smart contract development.</p>
+            <p>From Lagos to the global blockchain community, I'm dedicated to creating solutions that bridge traditional technology with the decentralized future. I specialize in Solana development, full-stack web applications, and AI integration.</p>
+            <p>When I'm not coding, you'll find me exploring new blockchain protocols, contributing to open-source projects, or sharing knowledge with the next generation of African developers.</p>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section class="section" id="projects">
-        <h2 class="section-title">Projects.dao</h2>
+    <section id="projects">
+        <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <h3 class="project-title">SolSynth DAO</h3>
-                <p class="project-description">A decentralized autonomous organization built on Solana, enabling community-driven synthetic asset creation and governance through advanced tokenomics.</p>
-                <div class="project-tags">
-                    <span class="tag">Solana</span>
-                    <span class="tag">DAO</span>
-                    <span class="tag">Rust</span>
-                    <span class="tag">Anchor</span>
+                <h3>SolSynth DAO</h3>
+                <div class="tech-stack">
+                    <span class="tech-tag">Solana</span>
+                    <span class="tech-tag">Anchor</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">React</span>
                 </div>
+                <p>A comprehensive DAO platform built on Solana blockchain, enabling decentralized governance with advanced voting mechanisms and treasury management.</p>
                 <div class="project-links">
-                    <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                    <a href="#" class="project-link"><i class="fas fa-rocket"></i> Live</a>
+                    <a href="#" class="project-link">Live Demo</a>
+                    <a href="#" class="project-link">GitHub</a>
                 </div>
             </div>
 
             <div class="project-card">
-                <h3 class="project-title">SolCred</h3>
-                <p class="project-description">Revolutionary credit scoring system leveraging blockchain technology and AI to provide decentralized financial reputation management.</p>
-                <div class="project-tags">
-                    <span class="tag">DeFi</span>
-                    <span class="tag">AI</span>
-                    <span class="tag">Machine Learning</span>
-                    <span class="tag">Solana</span>
+                <h3>SolCred</h3>
+                <div class="tech-stack">
+                    <span class="tech-tag">Solana</span>
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Web3.js</span>
                 </div>
+                <p>Decentralized credential verification system that provides secure, blockchain-based identity management for educational and professional certificates.</p>
                 <div class="project-links">
-                    <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                    <a href="#" class="project-link"><i class="fas fa-rocket"></i> Demo</a>
+                    <a href="#" class="project-link">Live Demo</a>
+                    <a href="#" class="project-link">GitHub</a>
                 </div>
             </div>
 
             <div class="project-card">
-                <h3 class="project-title">DePIN Network</h3>
-                <p class="project-description">Decentralized Physical Infrastructure Network enabling IoT devices to participate in blockchain consensus and earn token rewards.</p>
-                <div class="project-tags">
-                    <span class="tag">DePIN</span>
-                    <span class="tag">IoT</span>
-                    <span class="tag">Web3</span>
-                    <span class="tag">ZK-Proofs</span>
+                <h3>AI-Powered DeFi Analytics</h3>
+                <div class="tech-stack">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">AI/ML</span>
+                    <span class="tech-tag">Web3</span>
+                    <span class="tech-tag">FastAPI</span>
                 </div>
+                <p>Intelligent analytics dashboard that leverages AI to provide insights on DeFi protocols, yield farming opportunities, and market trends.</p>
                 <div class="project-links">
-                    <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                    <a href="#" class="project-link"><i class="fas fa-book"></i> Docs</a>
+                    <a href="#" class="project-link">Live Demo</a>
+                    <a href="#" class="project-link">GitHub</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section class="section" id="skills">
-        <h2 class="section-title">Skills.matrix</h2>
+    <section id="skills">
+        <h2 class="section-title">Technical Skills</h2>
         <div class="skills-grid">
             <div class="skill-item">
-                <div class="skill-icon"><i class="fab fa-js-square"></i></div>
-                <div class="skill-name">JavaScript</div>
-                <div class="skill-level">Advanced</div>
+                <div class="skill-icon">🌐</div>
+                <h4>HTML/CSS</h4>
             </div>
             <div class="skill-item">
-                <div class="skill-icon"><i class="fas fa-cube"></i></div>
-                <div class="skill-name">Solana/Anchor</div>
-                <div class="skill-level">Expert</div>
+                <div class="skill-icon">⚡</div>
+                <h4>JavaScript</h4>
             </div>
             <div class="skill-item">
-                <div class="skill-icon"><i class="fas fa-robot"></i></div>
-                <div class="skill-name">AI/ML</div>
-                <div class="skill-level">Intermediate</div>
+                <div class="skill-icon">🐘</div>
+                <h4>PHP</h4>
             </div>
             <div class="skill-item">
-                <div class="skill-icon"><i class="fas fa-database"></i></div>
-                <div class="skill-name">MySQL</div>
-                <div class="skill-level">Advanced</div>
+                <div class="skill-icon">🔗</div>
+                <h4>Solana</h4>
             </div>
             <div class="skill-item">
-                <div class="skill-icon"><i class="fab fa-php"></i></div>
-                <div class="skill-name">PHP</div>
-                <div class="skill-level">Intermediate</div>
+                <div class="skill-icon">⚓</div>
+                <h4>Anchor</h4>
             </div>
             <div class="skill-item">
-                <div class="skill-icon"><i class="fas fa-coins"></i></div>
-                <div class="skill-name">DeFi Protocols</div>
-                <div class="skill-level">Expert</div>
+                <div class="skill-icon">🗄️</div>
+                <h4>MySQL</h4>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🤖</div>
+                <h4>AI/LLMs</h4>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">⚛️</div>
+                <h4>React</h4>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">📱</div>
+                <h4>TypeScript</h4>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🐍</div>
+                <h4>Python</h4>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🔧</div>
+                <h4>Git</h4>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">☁️</div>
+                <h4>Web3.js</h4>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="section" id="contact">
-        <h2 class="section-title">Connect.protocol</h2>
-        <div class="contact-content">
-            <div class="contact-info">
-                <h3 style="color: var(--accent-magenta); margin-bottom: 2rem;">Network Endpoints</h3>
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-wallet"></i></div>
-                    <div>
-                        <div>Solana Wallet</div>
-                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Connect for Web3 interactions</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                    <div>
-                        <div>Email Protocol</div>
-                        <div style="color: var(--text-secondary); font-size: 0.9rem;">aaron@web3builder.dev</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fab fa-github"></i></div>
-                    <div>
-                        <div>GitHub Repository</div>
-                        <div style="color: var(--text-secondary); font-size: 0.9rem;">@aaronkyune</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fab fa-twitter"></i></div>
-                    <div>
-                        <div>X Protocol</div>
-                        <div style="color: var(--text-secondary); font-size: 0.9rem;">@aaronkyune</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="contact-form">
-                <h3 style="color: var(--accent-cyan); margin-bottom: 2rem;">Secure Message Channel</h3>
-                <form>
-                    <div class="form-group">
-                        <label>Sender Address</label>
-                        <input type="text" placeholder="your.wallet.address">
-                    </div>
-                    <div class="form-group">
-                        <label>Message Subject</label>
-                        <input type="text" placeholder="Collaboration Proposal">
-                    </div>
-                    <div class="form-group">
-                        <label>Encrypted Message</label>
-                        <textarea rows="5" placeholder="Your message to the Web3 builder..."></textarea>
-                    </div>
-                    <button type="submit" class="btn">Transmit Message</button>
-                </form>
-            </div>
+    <section id="contact" class="contact">
+        <h2 class="section-title">Let's Connect</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">Ready to build the future together? Reach out and let's create something amazing.</p>
+        <div class="contact-links">
+            <a href="mailto:aaron@example.com" class="contact-link">
+                <span>📧</span> Email
+            </a>
+            <a href="https://github.com/aaronkyune" target="_blank" class="contact-link">
+                <span>🐱</span> GitHub
+            </a>
+            <a href="https://twitter.com/aaronkyune" target="_blank" class="contact-link">
+                <span>🐦</span> Twitter
+            </a>
+            <a href="#" class="contact-link">
+                <span>💼</span> LinkedIn
+            </a>
+            <a href="#" class="contact-link" style="background: var(--solana-gradient); color: white;">
+                <span>🔗</span> Connect Wallet
+            </a>
         </div>
     </section>
 
-    <!-- Terminal Easter Egg -->
-    <div class="terminal" id="terminal">
-        <div class="terminal-header">
-            <span>aaron@web3:~$</span>
-            <button onclick="closeTerminal()" style="background: none; border: none; color: var(--accent-cyan); cursor: pointer;">×</button>
-        </div>
-        <div class="terminal-body" id="terminalBody">
-            <div>Web3 Terminal v2.0.1</div>
-            <div>Type 'help' for available commands</div>
-            <div class="terminal-input">
-                <span class="terminal-prompt">aaron@web3:~$</span>
-                <input type="text" class="terminal-cmd" id="terminalCmd" onkeypress="handleTerminalInput(event)">
-            </div>
-        </div>
-    </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Aaron Kyune Obed. Building the decentralized future from Nigeria 🇳🇬</p>
+    </footer>
 
     <script>
-        // Loading screen
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                document.getElementById('loadingScreen').classList.add('hidden');
-                setTimeout(() => {
-                    document.getElementById('loadingScreen').style.display = 'none';
-                }, 1000);
-            }, 3000);
-        });
-
-        // Matrix background
-        const canvas = document.getElementById('matrixCanvas');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
-        const matrixArray = matrix.split("");
-
-        const fontSize = 10;
-        const columns = canvas.width / fontSize;
-
-        const drops = [];
-        for(let x = 0; x < columns; x++) {
-            drops[x] = 1;
-        }
-
-        function draw() {
-            ctx.fillStyle = 'rgba(10, 10, 15, 0.04)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            ctx.fillStyle = '#00ff41';
-            ctx.font = fontSize + 'px monospace';
-
-            for(let i = 0; i < drops.length; i++) {
-                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                
-                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-
-        setInterval(draw, 35);
-
-        // Smooth scrolling
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -861,98 +567,17 @@
             });
         });
 
-        // Terminal Easter Egg
-        let terminalOpen = false;
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === '`' && e.ctrlKey) {
-                e.preventDefault();
-                toggleTerminal();
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
             }
         });
 
-        function toggleTerminal() {
-            const terminal = document.getElementById('terminal');
-            terminalOpen = !terminalOpen;
-            terminal.style.display = terminalOpen ? 'block' : 'none';
-            if (terminalOpen) {
-                document.getElementById('terminalCmd').focus();
-            }
-        }
-
-        function closeTerminal() {
-            terminalOpen = false;
-            document.getElementById('terminal').style.display = 'none';
-        }
-
-        function handleTerminalInput(event) {
-            if (event.key === 'Enter') {
-                const cmd = event.target.value.toLowerCase().trim();
-                const terminalBody = document.getElementById('terminalBody');
-                
-                // Add command to terminal
-                const cmdLine = document.createElement('div');
-                cmdLine.innerHTML = `<span style="color: var(--accent-cyan)">aaron@web3:~$</span> ${event.target.value}`;
-                terminalBody.appendChild(cmdLine);
-                
-                // Process command
-                const output = document.createElement('div');
-                switch(cmd) {
-                    case 'help':
-                        output.innerHTML = `Available commands:<br>
-                        - whoami: Display user info<br>
-                        - projects: List current projects<br>
-                        - skills: Show technical skills<br>
-                        - contact: Get contact information<br>
-                        - clear: Clear terminal<br>
-                        - exit: Close terminal`;
-                        break;
-                    case 'whoami':
-                        output.innerHTML = 'Aaron Kyune Obed - Web3 Engineer & Cyber Builder<br>Age: 19 | Location: Nigeria<br>Mission: Building the decentralized future';
-                        break;
-                    case 'projects':
-                        output.innerHTML = '1. SolSynth DAO - Decentralized synthetic assets<br>2. SolCred - AI-powered credit scoring<br>3. DePIN Network - IoT blockchain integration';
-                        break;
-                    case 'skills':
-                        output.innerHTML = 'Primary: JavaScript, Solana/Anchor, DeFi Protocols<br>Secondary: AI/ML, MySQL, PHP<br>Expertise: Smart Contracts, Tokenomics, ZK-Proofs';
-                        break;
-                    case 'contact':
-                        output.innerHTML = 'Email: aaron@web3builder.dev<br>GitHub: @aaronkyune<br>X: @aaronkyune<br>Wallet: Connect for Web3 interactions';
-                        break;
-                    case 'clear':
-                        terminalBody.innerHTML = `<div>Web3 Terminal v2.0.1</div>
-                        <div>Type 'help' for available commands</div>`;
-                        break;
-                    case 'exit':
-                        closeTerminal();
-                        break;
-                    default:
-                        output.innerHTML = `Command not found: ${cmd}<br>Type 'help' for available commands`;
-                }
-                
-                if (cmd !== 'clear' && cmd !== 'exit') {
-                    terminalBody.appendChild(output);
-                }
-                
-                // Create new input line
-                if (cmd !== 'exit') {
-                    const newInputLine = document.createElement('div');
-                    newInputLine.className = 'terminal-input';
-                    newInputLine.innerHTML = `<span class="terminal-prompt">aaron@web3:~$</span>
-                    <input type="text" class="terminal-cmd" onkeypress="handleTerminalInput(event)">`;
-                    terminalBody.appendChild(newInputLine);
-                    
-                    // Focus new input and scroll to bottom
-                    const newInput = newInputLine.querySelector('.terminal-cmd');
-                    newInput.focus();
-                    terminalBody.scrollTop = terminalBody.scrollHeight;
-                }
-                
-                event.target.value = '';
-            }
-        }
-
-        // Intersection Observer for animations
+        // Add entrance animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -967,150 +592,17 @@
             });
         }, observerOptions);
 
-        // Observe all sections for scroll animations
-        document.querySelectorAll('.section').forEach(section => {
+        // Observe all sections for animations
+        document.querySelectorAll('section').forEach(section => {
             section.style.opacity = '0';
             section.style.transform = 'translateY(30px)';
             section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(section);
         });
 
-        // Dynamic typing effect for hero subtitle
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
-
-        // Initialize typing effect after loading screen
-        setTimeout(() => {
-            const subtitle = document.querySelector('.hero-subtitle');
-            if (subtitle) {
-                const originalText = subtitle.textContent;
-                typeWriter(subtitle, originalText, 50);
-            }
-        }, 4000);
-
-        // Particle system for enhanced visual effects
-        class Particle {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.vx = (Math.random() - 0.5) * 2;
-                this.vy = (Math.random() - 0.5) * 2;
-                this.life = 1;
-                this.decay = Math.random() * 0.02 + 0.01;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                this.life -= this.decay;
-            }
-
-            draw(ctx) {
-                if (this.life > 0) {
-                    ctx.save();
-                    ctx.globalAlpha = this.life;
-                    ctx.fillStyle = '#00ffff';
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.restore();
-                }
-            }
-        }
-
-        const particles = [];
-        
-        // Add particles on mouse move
-        document.addEventListener('mousemove', (e) => {
-            if (Math.random() < 0.1) {
-                particles.push(new Particle(e.clientX, e.clientY));
-            }
-        });
-
-        // Animate particles
-        function animateParticles() {
-            const canvas = document.getElementById('matrixCanvas');
-            const ctx = canvas.getContext('2d');
-            
-            particles.forEach((particle, index) => {
-                particle.update();
-                particle.draw(ctx);
-                
-                if (particle.life <= 0) {
-                    particles.splice(index, 1);
-                }
-            });
-            
-            requestAnimationFrame(animateParticles);
-        }
-
-        animateParticles();
-
-        // Enhanced form handling
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Simulate message transmission
-            const button = this.querySelector('button');
-            const originalText = button.textContent;
-            
-            button.textContent = 'Transmitting...';
-            button.disabled = true;
-            
-            setTimeout(() => {
-                button.textContent = 'Message Sent!';
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.disabled = false;
-                    this.reset();
-                }, 2000);
-            }, 1500);
-        });
-
-        // Window resize handler
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // Easter egg: Konami code
-        let konamiCode = [];
-        const konamiSequence = [
-            'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
-            'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
-            'KeyB', 'KeyA'
-        ];
-
-        document.addEventListener('keydown', (e) => {
-            konamiCode.push(e.code);
-            if (konamiCode.length > konamiSequence.length) {
-                konamiCode.shift();
-            }
-            
-            if (konamiCode.length === konamiSequence.length &&
-                konamiCode.every((code, index) => code === konamiSequence[index])) {
-                // Activate special mode
-                document.body.style.filter = 'hue-rotate(180deg)';
-                setTimeout(() => {
-                    document.body.style.filter = 'none';
-                }, 3000);
-                konamiCode = [];
-            }
-        });
-
-        console.log('%cWelcome to the Web3 Matrix! 🚀', 'color: #00ffff; font-size: 20px; font-weight: bold;');
-        console.log('%cPress Ctrl + ` to open terminal', 'color: #39ff14; font-size: 14px;');
-        console.log('%cTry the Konami code for a surprise! ↑↑↓↓←→←→BA', 'color: #ff0080; font-size: 12px;');
+        // Hero section is immediately visible
+        document.querySelector('.hero').style.opacity = '1';
+        document.querySelector('.hero').style.transform = 'translateY(0)';
     </script>
 </body>
 </html>
