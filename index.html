@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aaron Kyune Obed | Web3 Architect</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -15,215 +15,200 @@
                         'display': ['Space Grotesk', 'sans-serif'],
                     },
                     colors: {
-                        'noir': '#050505',
-                        'glass': 'rgba(255, 255, 255, 0.03)',
-                        'cyber-blue': '#00F0FF',
-                        'cyber-purple': '#7000FF',
-                        'cyber-green': '#00FF94',
+                        'brand-blue': '#2563eb',
+                        'brand-dark': '#0f172a',
+                        'bg-soft': '#f8fafc',
+                        'border-light': '#e2e8f0'
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #050505; color: #E5E7EB; scroll-behavior: smooth; }
+        body { background-color: #f8fafc; color: #0f172a; scroll-behavior: smooth; }
         
-        .glow-mesh {
-            background: radial-gradient(circle at 50% -20%, #1e1b4b 0%, transparent 50%),
-                        radial-gradient(circle at 0% 100%, #0c4a6e 0%, transparent 40%);
-        }
-
         .bento-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .bento-card:hover {
-            border-color: #7000FF;
-            background: rgba(112, 0, 255, 0.05);
-            transform: translateY(-5px);
-        }
-
-        .text-gradient {
-            background: linear-gradient(to right, #00F0FF, #7000FF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            border-color: #2563eb;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
         }
 
         .hero-title {
-            letter-spacing: -0.05em;
-            line-height: 0.9;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+        }
+
+        .nav-blur {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
         }
 
         @keyframes subtle-float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
         .animate-float { animation: subtle-float 5s ease-in-out infinite; }
     </style>
 </head>
-<body class="font-sans antialiased selection:bg-cyber-blue selection:text-noir">
-
-    <div class="fixed inset-0 glow-mesh -z-10 opacity-60"></div>
+<body class="font-sans antialiased selection:bg-brand-blue selection:text-white">
 
     <nav class="fixed top-0 w-full z-50 px-6 py-4">
-        <div class="max-w-6xl mx-auto flex justify-between items-center bento-card px-6 py-3 rounded-2xl">
+        <div class="max-w-6xl mx-auto flex justify-between items-center nav-blur border border-border-light px-6 py-3 rounded-2xl shadow-sm">
             <div class="flex items-center gap-2">
-                <div class="w-8 h-8 rounded bg-white text-noir font-extrabold flex items-center justify-center">AK</div>
-                <span class="font-display font-bold tracking-tighter">AARON KYUNE</span>
+                <div class="w-8 h-8 rounded bg-brand-dark text-white font-extrabold flex items-center justify-center text-xs">AK</div>
+                <span class="font-display font-bold tracking-tight text-brand-dark">AARON KYUNE</span>
             </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
-                <a href="#about" class="hover:text-cyber-blue transition-colors">Scope</a>
-                <a href="#projects" class="hover:text-cyber-blue transition-colors">Builds</a>
-                <a href="#skills" class="hover:text-cyber-blue transition-colors">Stack</a>
-                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-slate-500">
+                <a href="#about" class="hover:text-brand-blue transition-colors">Experience</a>
+                <a href="#projects" class="hover:text-brand-blue transition-colors">Builds</a>
+                <a href="#skills" class="hover:text-brand-blue transition-colors">Stack</a>
             </div>
-            <a href="#contact" class="text-xs font-bold px-4 py-2 border border-white/10 rounded-full hover:bg-white hover:text-noir transition-all">HIRE ME</a>
+            <a href="#contact" class="text-xs font-bold px-5 py-2.5 bg-brand-dark text-white rounded-full hover:bg-brand-blue transition-all">HIRE ME</a>
         </div>
     </nav>
 
     <main class="pt-32 pb-20 px-6">
-        <section class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-6 mb-20">
-            <div class="lg:col-span-8 bento-card p-10 md:p-16 rounded-[2.5rem] flex flex-col justify-center relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-8 opacity-10">
-                    <svg width="200" height="200" viewBox="0 0 100 100" fill="none" class="animate-spin-slow">
-                        <circle cx="50" cy="50" r="48" stroke="white" stroke-dasharray="4 4" />
-                    </svg>
+        <section class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-6 mb-24">
+            <div class="lg:col-span-8 bento-card p-10 md:p-16 rounded-[2.5rem] flex flex-col justify-center">
+                <div class="flex items-center gap-2 mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-blue animate-pulse"></span>
+                    <h2 class="text-brand-blue font-bold text-xs tracking-[0.2em] uppercase">Web3 Architect</h2>
                 </div>
-                <h2 class="text-cyber-blue font-display font-bold text-sm tracking-widest mb-6">WEB3 DEVELOPER & ARCHITECT</h2>
-                <h1 class="hero-title text-6xl md:text-8xl font-display font-extrabold mb-8">
-                    Decentralizing <br> The <span class="text-gradient">Future.</span>
+                <h1 class="hero-title text-5xl md:text-7xl lg:text-8xl font-display font-bold text-brand-dark mb-8">
+                    Building the <br> <span class="text-brand-blue">Open Economy.</span>
                 </h1>
-                <p class="max-w-xl text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-10">
-                    Aaron Kyune Obed. 19-year-old innovator crafting high-performance blockchain solutions from Lagos to the global mainnet.
+                <p class="max-w-xl text-slate-500 text-lg md:text-xl font-light leading-relaxed mb-10">
+                    Aaron Kyune Obed. A 19-year-old developer specializing in decentralized systems and high-scale blockchain architecture. Based in Lagos, building for the world.
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="#projects" class="bg-white text-noir px-8 py-4 rounded-xl font-bold hover:scale-95 transition-transform">VIEW PROJECTS</a>
-                    <a href="https://github.com/obedaaron" class="bento-card px-8 py-4 rounded-xl font-bold flex items-center gap-2">
+                    <a href="#projects" class="bg-brand-dark text-white px-8 py-4 rounded-2xl font-bold hover:bg-brand-blue transition-colors shadow-lg shadow-blue-900/10">VIEW WORK</a>
+                    <a href="https://github.com/obedaaron" class="border border-border-light px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-slate-50 transition-colors">
                         GITHUB
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                     </a>
                 </div>
             </div>
 
             <div class="lg:col-span-4 grid gap-6">
-                <div class="bento-card p-8 rounded-[2.5rem] flex flex-col justify-between">
-                    <span class="text-4xl">🇳🇬</span>
+                <div class="bento-card p-8 rounded-[2.5rem] flex flex-col justify-between border-slate-100">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-2xl">🇳🇬</div>
                     <div>
-                        <h3 class="font-display font-bold text-2xl">Lagos Based</h3>
-                        <p class="text-gray-500 text-sm">Operating globally in the GMT+1 timezone.</p>
+                        <h3 class="font-display font-bold text-2xl text-brand-dark">Lagos, NG</h3>
+                        <p class="text-slate-500 text-sm">Operating globally. GMT+1.</p>
                     </div>
                 </div>
-                <div class="bento-card p-8 rounded-[2.5rem] flex flex-col justify-between bg-cyber-purple/10">
+                <div class="bento-card p-8 rounded-[2.5rem] flex flex-col justify-between bg-brand-blue">
                     <div class="flex justify-between items-start">
-                        <span class="font-display text-5xl font-extrabold text-cyber-purple">19</span>
-                        <div class="px-3 py-1 bg-cyber-purple/20 rounded-full text-[10px] font-bold text-cyber-purple uppercase tracking-tighter">Gen Z Dev</div>
+                        <span class="font-display text-5xl font-bold text-white">19</span>
+                        <div class="px-3 py-1 bg-white/20 rounded-full text-[10px] font-bold text-white uppercase tracking-tighter">Age</div>
                     </div>
                     <div>
-                        <h3 class="font-display font-bold text-2xl">Innovator</h3>
-                        <p class="text-gray-500 text-sm">Years of deep-diving into decentralized logic.</p>
+                        <h3 class="font-display font-bold text-2xl text-white">Innovation First</h3>
+                        <p class="text-blue-100 text-sm opacity-80">Pushing the boundaries of Web3.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="max-w-6xl mx-auto mb-20">
-            <div class="flex justify-between items-end mb-10">
-                <div>
-                    <h2 class="text-3xl font-display font-bold">Featured Builds</h2>
-                    <p class="text-gray-500">Live protocols and applications.</p>
-                </div>
+        <section id="projects" class="max-w-6xl mx-auto mb-24">
+            <div class="mb-12">
+                <h2 class="text-3xl font-display font-bold text-brand-dark">Featured Builds</h2>
+                <div class="w-12 h-1 bg-brand-blue mt-2"></div>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="group bento-card p-6 rounded-3xl relative overflow-hidden">
-                    <div class="h-40 rounded-2xl bg-gradient-to-br from-cyber-blue/20 to-noir border border-white/5 mb-6 flex items-center justify-center">
-                        <span class="text-5xl group-hover:scale-110 transition-transform">🏛️</span>
-                    </div>
-                    <h3 class="font-display font-bold text-xl mb-2">SolSynth DAO</h3>
-                    <p class="text-gray-500 text-sm mb-6">Advanced governance on Solana. Treasury management and voting logic.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bento-card p-8 rounded-[2rem]">
+                    <div class="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-2xl mb-6">🏛️</div>
+                    <h3 class="font-display font-bold text-xl mb-3 text-brand-dark">SolSynth DAO</h3>
+                    <p class="text-slate-500 text-sm mb-6 leading-relaxed">Advanced governance infrastructure on Solana. Built with Rust and Anchor for secure treasury management.</p>
                     <div class="flex gap-2">
-                        <span class="text-[10px] border border-white/10 px-2 py-1 rounded">ANCHOR</span>
-                        <span class="text-[10px] border border-white/10 px-2 py-1 rounded">RUST</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md font-bold uppercase">Anchor</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md font-bold uppercase">Rust</span>
                     </div>
                 </div>
 
-                <div class="group bento-card p-6 rounded-3xl relative overflow-hidden">
-                    <div class="h-40 rounded-2xl bg-gradient-to-br from-cyber-green/20 to-noir border border-white/5 mb-6 flex items-center justify-center">
-                        <span class="text-5xl group-hover:scale-110 transition-transform">🎓</span>
-                    </div>
-                    <h3 class="font-display font-bold text-xl mb-2">SolCred</h3>
-                    <p class="text-gray-500 text-sm mb-6">Decentralized credential verification for Web3 talent.</p>
+                <div class="bento-card p-8 rounded-[2rem]">
+                    <div class="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-2xl mb-6">🎓</div>
+                    <h3 class="font-display font-bold text-xl mb-3 text-brand-dark">SolCred</h3>
+                    <p class="text-slate-500 text-sm mb-6 leading-relaxed">Identity verification protocol for Web3 developers. Ensuring talent is verified on-chain.</p>
                     <div class="flex gap-2">
-                        <span class="text-[10px] border border-white/10 px-2 py-1 rounded">SOLIDITY</span>
-                        <span class="text-[10px] border border-white/10 px-2 py-1 rounded">PHP</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md font-bold uppercase">Solidity</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md font-bold uppercase">PHP</span>
                     </div>
                 </div>
 
-                <div class="group bento-card p-6 rounded-3xl relative overflow-hidden">
-                    <div class="h-40 rounded-2xl bg-gradient-to-br from-cyber-purple/20 to-noir border border-white/5 mb-6 flex items-center justify-center">
-                        <span class="text-5xl group-hover:scale-110 transition-transform">🤖</span>
-                    </div>
-                    <h3 class="font-display font-bold text-xl mb-2">DeFi Analytics AI</h3>
-                    <p class="text-gray-500 text-sm mb-6">Real-time market insights powered by ML models.</p>
+                <div class="bento-card p-8 rounded-[2rem]">
+                    <div class="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-2xl mb-6">🤖</div>
+                    <h3 class="font-display font-bold text-xl mb-3 text-brand-dark">DeFi Analytics AI</h3>
+                    <p class="text-slate-500 text-sm mb-6 leading-relaxed">Predictive market modeling using machine learning to track liquidity shifts in real-time.</p>
                     <div class="flex gap-2">
-                        <span class="text-[10px] border border-white/10 px-2 py-1 rounded">PYTHON</span>
-                        <span class="text-[10px] border border-white/10 px-2 py-1 rounded">FASTAPI</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md font-bold uppercase">Python</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md font-bold uppercase">AI</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="max-w-6xl mx-auto bento-card p-10 rounded-[2.5rem]">
-            <h2 class="font-display font-bold text-2xl mb-10 text-center uppercase tracking-widest">The Arsenal</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-                <div class="flex flex-col items-center gap-3">
-                    <div class="w-16 h-16 bento-card rounded-2xl flex items-center justify-center text-2xl hover:text-cyber-blue">
+        <section id="skills" class="max-w-6xl mx-auto bento-card p-12 rounded-[2.5rem] border-none shadow-xl shadow-slate-200/50">
+            <h2 class="font-display font-bold text-2xl mb-12 text-center text-brand-dark">The Technical Stack</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-10">
+                <div class="flex flex-col items-center gap-4">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition-all cursor-default">
                         <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 19.72h20L12 2zm0 3.45l7.39 13.01H4.61L12 5.45zM11 15v2h2v-2h-2zm0-6v4h2V9h-2z"/></svg>
                     </div>
-                    <span class="text-[10px] font-bold text-gray-500">SOLANA</span>
+                    <span class="text-xs font-bold text-slate-400 tracking-widest uppercase">Solana</span>
                 </div>
-                <div class="flex flex-col items-center gap-3">
-                    <div class="w-16 h-16 bento-card rounded-2xl flex items-center justify-center text-2xl">⚛️</div>
-                    <span class="text-[10px] font-bold text-gray-500">REACT</span>
+                <div class="flex flex-col items-center gap-4 text-slate-400 hover:text-brand-blue transition-colors">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-3xl">⚛️</div>
+                    <span class="text-xs font-bold tracking-widest uppercase">React</span>
                 </div>
-                <div class="flex flex-col items-center gap-3">
-                    <div class="w-16 h-16 bento-card rounded-2xl flex items-center justify-center text-2xl">⚡</div>
-                    <span class="text-[10px] font-bold text-gray-500">TYPESCRIPT</span>
+                <div class="flex flex-col items-center gap-4 text-slate-400 hover:text-brand-blue transition-colors">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-3xl">⚡</div>
+                    <span class="text-xs font-bold tracking-widest uppercase">TS</span>
                 </div>
-                <div class="flex flex-col items-center gap-3">
-                    <div class="w-16 h-16 bento-card rounded-2xl flex items-center justify-center text-2xl">🐘</div>
-                    <span class="text-[10px] font-bold text-gray-500">PHP</span>
+                <div class="flex flex-col items-center gap-4 text-slate-400 hover:text-brand-blue transition-colors">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-3xl">🐘</div>
+                    <span class="text-xs font-bold tracking-widest uppercase">PHP</span>
                 </div>
-                <div class="flex flex-col items-center gap-3">
-                    <div class="w-16 h-16 bento-card rounded-2xl flex items-center justify-center text-2xl">🐍</div>
-                    <span class="text-[10px] font-bold text-gray-500">PYTHON</span>
+                <div class="flex flex-col items-center gap-4 text-slate-400 hover:text-brand-blue transition-colors">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-3xl">🐍</div>
+                    <span class="text-xs font-bold tracking-widest uppercase">Python</span>
                 </div>
-                <div class="flex flex-col items-center gap-3">
-                    <div class="w-16 h-16 bento-card rounded-2xl flex items-center justify-center text-2xl">🔧</div>
-                    <span class="text-[10px] font-bold text-gray-500">GIT</span>
+                <div class="flex flex-col items-center gap-4 text-slate-400 hover:text-brand-blue transition-colors">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-3xl">🔨</div>
+                    <span class="text-xs font-bold tracking-widest uppercase">Git</span>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer id="contact" class="max-w-6xl mx-auto px-6 pb-10">
-        <div class="bento-card p-10 rounded-[2.5rem] bg-white text-noir flex flex-col md:flex-row justify-between items-center gap-6">
-            <h2 class="font-display font-extrabold text-4xl md:text-5xl tracking-tighter text-center md:text-left">
-                HAVE A <br> <span class="opacity-30">PROPOSAL?</span>
-            </h2>
-            <div class="flex flex-col gap-4 w-full md:w-auto">
-                <a href="mailto:obedkyuneaaron1212@gmail.com" class="bg-noir text-white px-10 py-5 rounded-2xl font-bold text-center">EMAIL ME</a>
-                <div class="flex justify-center gap-4">
-                    <a href="https://x.com/aaront1s" class="hover:text-cyber-purple transition-colors font-bold">X (Twitter)</a>
-                    <span>/</span>
-                    <a href="https://www.linkedin.com/in/aaron-obed-495963361/" class="hover:text-cyber-blue transition-colors font-bold">LinkedIn</a>
+    <footer id="contact" class="max-w-6xl mx-auto px-6 pb-20">
+        <div class="bento-card p-12 rounded-[3rem] bg-brand-dark text-white flex flex-col md:flex-row justify-between items-center gap-8 border-none overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-brand-blue opacity-10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+            <div class="relative z-10">
+                <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tighter text-center md:text-left mb-2">
+                    Let's build the <br> <span class="text-brand-blue">Open Web.</span>
+                </h2>
+                <p class="text-slate-400 text-center md:text-left">Currently open for architecture & dev roles.</p>
+            </div>
+            <div class="flex flex-col gap-5 w-full md:w-auto relative z-10">
+                <a href="mailto:obedkyuneaaron1212@gmail.com" class="bg-brand-blue text-white px-12 py-5 rounded-2xl font-bold text-center hover:scale-105 transition-transform">GET IN TOUCH</a>
+                <div class="flex justify-center gap-6 text-sm">
+                    <a href="https://x.com/aaront1s" class="hover:text-brand-blue transition-colors font-medium">X (Twitter)</a>
+                    <a href="https://www.linkedin.com/in/aaron-obed-495963361/" class="hover:text-brand-blue transition-colors font-medium">LinkedIn</a>
                 </div>
             </div>
         </div>
-        <p class="text-center text-gray-600 text-[10px] mt-10 tracking-widest font-bold">© 2026 AARON KYUNE OBED • ALL SYSTEMS OPERATIONAL</p>
+        <div class="flex flex-col md:flex-row justify-between items-center mt-12 text-slate-400 text-[11px] font-bold tracking-widest uppercase gap-4">
+            <p>© 2026 Aaron Kyune Obed</p>
+            <p>Made with focus in Lagos, Nigeria</p>
+        </div>
     </footer>
 
 </body>
