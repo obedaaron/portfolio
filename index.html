@@ -397,6 +397,19 @@
             <p>Fullstack Engineer // Abuja, Nigeria</p>
         </div>
     </footer>
-
+<script>
+    function toggleModal() {
+    const modal = document.getElementById('projectModal');
+    if (modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden'; // Stop scrolling
+    } else {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto'; // Resume scrolling
+    }
+}
+</script>
 </body>
 </html>
