@@ -320,6 +320,61 @@
 </section>
     </main>
 
+    <div id="projectModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/40 backdrop-blur-sm p-6">
+    <div class="card w-full max-w-2xl rounded-[3rem] p-8 md:p-12 relative overflow-y-auto max-h-[90vh]">
+        <button onclick="toggleModal()" class="absolute top-8 right-8 text-slate-400 hover:text-slate-900 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+
+        <div class="mb-10">
+            <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Project Brief</h2>
+            <p class="text-slate-500 text-sm mt-2">Fill this out to help me understand your vision.</p>
+        </div>
+
+        <form action="#" class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-[11px] font-black uppercase tracking-widest text-slate-400 mb-2">Full Name</label>
+                    <input type="text" placeholder="John Doe" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-5 py-3 text-sm focus:outline-none focus:border-primary transition-colors">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-black uppercase tracking-widest text-slate-400 mb-2">Email Address</label>
+                    <input type="email" placeholder="john@example.com" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-5 py-3 text-sm focus:outline-none focus:border-primary transition-colors">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-[11px] font-black uppercase tracking-widest text-slate-400 mb-2">Project Type</label>
+                <select class="w-full bg-slate-50 border border-slate-100 rounded-xl px-5 py-3 text-sm focus:outline-none focus:border-primary transition-colors appearance-none">
+                    <option>SaaS Development</option>
+                    <option>E-commerce Solution</option>
+                    <option>Custom API / Backend</option>
+                    <option>Corporate Website</option>
+                    <option>Mobile App (React Native)</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-[11px] font-black uppercase tracking-widest text-slate-400 mb-2">Estimated Budget (USD)</label>
+                <div class="grid grid-cols-3 gap-3">
+                    <button type="button" class="border border-slate-100 rounded-xl py-2 text-xs font-bold text-slate-500 hover:bg-slate-50">$1k - $3k</button>
+                    <button type="button" class="border border-primary bg-blue-50 text-primary rounded-xl py-2 text-xs font-bold">$3k - $10k</button>
+                    <button type="button" class="border border-slate-100 rounded-xl py-2 text-xs font-bold text-slate-500 hover:bg-slate-50">$10k+</button>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-[11px] font-black uppercase tracking-widest text-slate-400 mb-2">Project Description</label>
+                <textarea rows="4" placeholder="Tell me about your goals and technical requirements..." class="w-full bg-slate-50 border border-slate-100 rounded-xl px-5 py-3 text-sm focus:outline-none focus:border-primary transition-colors resize-none"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold hover:bg-primary transition-all shadow-lg shadow-blue-900/10">
+                Send Project Brief 🚀
+            </button>
+        </form>
+    </div>
+</div>
+
     <footer id="contact" class="max-w-6xl mx-auto px-6 pb-20">
         <div class="card p-12 md:p-20 rounded-[4rem] bg-slate-900 text-white flex flex-col items-center text-center relative overflow-hidden border-none">
             <div class="relative z-10">
