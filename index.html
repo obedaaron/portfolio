@@ -1125,11 +1125,10 @@ footer p {
 </div>
 
 <script>
-
 const cd=document.getElementById('cur-d'),cr=document.getElementById('cur-r');
 let mx=0,my=0,rx=0,ry=0;
 window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px';});
-(function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(loop);})();
+(function loop(){rx+=(mx-rx)*.28;ry+=(my-ry)*.28;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(loop);})();
 document.querySelectorAll('a,button,.work-card,.trait,.svc-row,.tech-cell,.spill,details summary').forEach(el=>{
   el.addEventListener('mouseenter',()=>cr.classList.add('big'));
   el.addEventListener('mouseleave',()=>cr.classList.remove('big'));
@@ -1142,8 +1141,20 @@ function openModal(){document.getElementById('modal').classList.add('open');docu
 function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 document.getElementById('modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
 function submitForm(e){
   e.preventDefault();
   const d=Object.fromEntries(new FormData(e.target));
   const b=`Name: ${d.name}%0D%0AEmail: ${d.email}%0D%0AType: ${d.project_type}%0D%0ABudget: ${d.budget}%0D%0A%0D%0A${d.description}`;
-  window.location.href=`mailto:obed
+  window.location.href=`mailto:obedkyuneaaron1212@gmail.com?subject=Project Brief: ${d.project_type}&body=${b}`;
+  closeModal();
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
