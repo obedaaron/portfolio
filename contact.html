@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>Contact — Aaron Kyune Obed</title>
+<style>
+:root{--ink:#1a1612;--paper:#f7f3ed;--cream:#ede8e0;--warm:#e8e0d4;--orange:#c84b0e;--orange-light:#e05a18;--orange-dim:rgba(200,75,14,.12);--muted:#7a6f65;--rule:rgba(26,22,18,.1);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:'Outfit',sans-serif;overflow-x:hidden;cursor:none;}
+#cur-d{position:fixed;width:7px;height:7px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+#cur-r{position:fixed;width:34px;height:34px;border:1.5px solid rgba(200,75,14,.55);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s,border-color .2s;}
+#cur-r.big{width:56px;height:56px;background:rgba(200,75,14,.06);border-color:var(--orange);}
+@media(pointer:coarse){#cur-d,#cur-r{display:none;}body{cursor:auto;}}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 56px;height:72px;display:flex;justify-content:space-between;align-items:center;background:rgba(247,243,237,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--rule);animation:fadeSlideDown .7s .1s both;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.12em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:6px;}
+.nav-logo-dot{color:var(--orange);}
+.nav-links{display:flex;gap:40px;list-style:none;}
+.nav-links a{text-decoration:none;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);transition:color .2s;position:relative;padding-bottom:2px;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--orange);transition:width .3s ease;}
+.nav-links a:hover,.nav-links a.active{color:var(--ink);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--ink);border-radius:4px;padding:9px 22px;background:transparent;font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);cursor:none;transition:all .25s;}
+.nav-cta:hover{background:var(--ink);color:var(--paper);}
+.nav-menu-btn{display:none;flex-direction:column;gap:5px;background:transparent;border:none;cursor:none;padding:4px;}
+.nav-menu-btn span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s;}
+@media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}.nav-menu-btn{display:flex;}.nav-cta{display:none;}
+.nav-mobile-open .nav-links{display:flex;flex-direction:column;gap:0;position:fixed;top:72px;left:0;right:0;bottom:0;background:var(--paper);padding:32px 24px;z-index:99;border-top:1px solid var(--rule);}
+.nav-mobile-open .nav-links li{border-bottom:1px solid var(--rule);}
+.nav-mobile-open .nav-links a{display:block;padding:18px 0;font-size:13px;}
+.nav-mobile-open .nav-cta{display:inline-flex;margin-top:24px;width:100%;justify-content:center;padding:14px;}}
+.page-hero{padding:140px 56px 80px;background:var(--paper);position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:100%;background:repeating-linear-gradient(180deg,transparent 0px,transparent 47px,rgba(26,22,18,.04) 48px);pointer-events:none;}
+.page-hero-inner{position:relative;z-index:2;max-width:900px;}
+.page-eyebrow{font-size:9.5px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--orange);display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.page-eyebrow::before{content:'';display:inline-block;width:20px;height:1px;background:var(--orange);}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,10vw,140px);line-height:.9;letter-spacing:.02em;color:var(--ink);margin-bottom:24px;}
+.page-sub{font-size:16px;font-weight:300;line-height:1.85;color:var(--muted);max-width:540px;}
+@media(max-width:768px){.page-hero{padding:120px 20px 60px;}.page-title{font-size:clamp(52px,14vw,90px);}}
+.sec-label{font-size:9.5px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--orange);display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.sec-label::before{content:'';display:inline-block;width:20px;height:1px;background:var(--orange);}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,6.5vw,88px);line-height:.92;letter-spacing:.02em;color:var(--ink);}
+footer{background:var(--ink);padding:22px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(247,243,237,.06);}
+@media(max-width:768px){footer{padding:18px 20px;flex-direction:column;text-align:center;}}
+footer p{font-size:9.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(247,243,237,.25);}
+.foot-loc{display:flex;align-items:center;gap:8px;font-size:9.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(247,243,237,.25);}
+.foot-loc i{color:var(--orange);}
+@keyframes fadeSlideDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes maskUp{from{opacity:0;transform:translateY(56px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-l{opacity:0;transform:translateX(-36px);transition:opacity .75s ease,transform .75s ease;}
+.reveal-l.visible{opacity:1;transform:none;}
+.reveal-r{opacity:0;transform:translateX(36px);transition:opacity .75s ease,transform .75s ease;}
+.reveal-r.visible{opacity:1;transform:none;}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;padding:0 56px 100px;align-items:start;}
+@media(max-width:900px){.contact-layout{grid-template-columns:1fr;gap:48px;padding:0 20px 80px;}}
+.contact-big-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,7vw,96px);line-height:.9;letter-spacing:.02em;color:var(--ink);margin-bottom:8px;}
+.contact-italic-h{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(40px,5.5vw,72px);color:var(--orange);line-height:.9;margin-bottom:32px;}
+.contact-desc{font-size:14px;font-weight:300;line-height:1.85;color:var(--muted);margin-bottom:40px;max-width:400px;}
+.contact-links{display:flex;flex-direction:column;gap:16px;}
+.c-link{display:flex;align-items:center;gap:16px;padding:18px 20px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;transition:all .3s;cursor:none;}
+.c-link:hover{border-color:var(--orange);transform:translateX(6px);}
+.c-link-icon{width:40px;height:40px;border-radius:8px;background:var(--orange-dim);border:1px solid rgba(200,75,14,.2);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--orange);flex-shrink:0;}
+.c-link-text{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);}
+.c-link-sub{font-size:12px;color:var(--muted);font-weight:300;margin-top:2px;}
+.form-wrap{background:var(--cream);border-radius:12px;padding:48px 44px;}
+@media(max-width:500px){.form-wrap{padding:28px 20px;}}
+.form-wrap h3{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.04em;margin-bottom:6px;}
+.form-wrap > p{font-size:13px;color:var(--muted);margin-bottom:28px;}
+.fg{margin-bottom:20px;}
+.fg label{display:block;font-size:9px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--paper);border:1.5px solid var(--rule);border-radius:4px;padding:13px 16px;color:var(--ink);font-family:'Outfit';font-size:14px;outline:none;transition:border-color .25s;cursor:none;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--orange);}
+.fg textarea{resize:none;height:110px;}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:500px){.f-row{grid-template-columns:1fr;}}
+.r-g{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.rl{cursor:none;}
+.rl input{display:none;}
+.rb{text-align:center;padding:10px;border-radius:4px;border:1.5px solid var(--rule);font-size:11px;font-weight:700;color:var(--muted);transition:all .25s;}
+.rl input:checked+.rb{border-color:var(--orange);background:var(--orange-dim);color:var(--orange);}
+.btn-submit{width:100%;padding:15px;border-radius:4px;background:var(--ink);border:none;color:var(--paper);font-family:'Outfit';font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;cursor:none;transition:all .3s;}
+.btn-submit:hover{background:var(--orange);transform:translateY(-2px);}
+</style>
+</head>
+<body>
+<div id="cur-d"></div>
+<div id="cur-r"></div>
+<nav>
+  <a href="index.html" class="nav-logo">AARON<span class="nav-logo-dot">.</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="index.html#projects">Works</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <a href="mailto:obedkyuneaaron1212@gmail.com" class="nav-cta">Start a Project</a>
+  <button class="nav-menu-btn" id="nav-menu-btn" onclick="toggleNav()"><span></span><span></span><span></span></button>
+</nav>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-eyebrow">Contact</div>
+    <h1 class="page-title">Let's build<br>something.</h1>
+    <p class="page-sub">Have a project in mind? Send a brief below or reach out directly — I respond within 24 hours.</p>
+  </div>
+</section>
+<div class="contact-layout">
+  <div class="reveal-l">
+    <div class="contact-big-h">GOT A PROJECT</div>
+    <div class="contact-italic-h">in mind?</div>
+    <p class="contact-desc">Available for freelance projects, full-time roles, and technical consulting. Let's talk about what you're building.</p>
+    <div class="contact-links">
+      <a href="mailto:obedkyuneaaron1212@gmail.com" class="c-link"><div class="c-link-icon"><i class="fa-solid fa-envelope"></i></div><div><div class="c-link-text">Email</div><div class="c-link-sub">obedkyuneaaron1212@gmail.com</div></div></a>
+      <a href="https://github.com/obedaaron" target="_blank" class="c-link"><div class="c-link-icon"><i class="fa-brands fa-github"></i></div><div><div class="c-link-text">GitHub</div><div class="c-link-sub">github.com/obedaaron</div></div></a>
+      <a href="https://x.com/aaront1s" target="_blank" class="c-link"><div class="c-link-icon"><i class="fa-brands fa-x-twitter"></i></div><div><div class="c-link-text">Twitter / X</div><div class="c-link-sub">@aaront1s</div></div></a>
+      <a href="https://www.linkedin.com/in/aaron-obed-495963361/" target="_blank" class="c-link"><div class="c-link-icon"><i class="fa-brands fa-linkedin-in"></i></div><div><div class="c-link-text">LinkedIn</div><div class="c-link-sub">Aaron Obed</div></div></a>
+    </div>
+  </div>
+  <div class="form-wrap reveal-r">
+    <h3>Project Brief</h3>
+    <p>Fill this out and I'll get back to you within 24 hours.</p>
+    <form onsubmit="submitForm(event)">
+      <div class="f-row">
+        <div class="fg"><label>Full Name</label><input type="text" name="name" placeholder="John Doe" required></div>
+        <div class="fg"><label>Email</label><input type="email" name="email" placeholder="john@example.com" required></div>
+      </div>
+      <div class="fg"><label>Project Type</label><select name="project_type"><option>SaaS Development</option><option>E-commerce Solution</option><option>Custom API / Backend</option><option>Corporate Website</option><option>Mobile App</option></select></div>
+      <div class="fg"><label>Budget (USD)</label><div class="r-g"><label class="rl"><input type="radio" name="budget" value="$1k-$3k"><div class="rb">$1k–$3k</div></label><label class="rl"><input type="radio" name="budget" value="$3k-$10k" checked><div class="rb">$3k–$10k</div></label><label class="rl"><input type="radio" name="budget" value="$10k+"><div class="rb">$10k+</div></label></div></div>
+      <div class="fg"><label>Description</label><textarea name="description" placeholder="Tell me about your goals and technical requirements..." required></textarea></div>
+      <button type="submit" class="btn-submit">Send Brief &rarr;</button>
+    </form>
+  </div>
+</div>
+<footer>
+  <p>&copy; 2026 Aaron Kyune Obed. All rights reserved.</p>
+  <div class="foot-loc"><i class="fa-solid fa-location-dot"></i> Abuja, Nigeria</div>
+</footer>
+<script>
+const cd=document.getElementById('cur-d'),cr=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.28;ry+=(my-ry)*.28;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.p-card,.trait,.c-link,.svc-item,.proc-card,.tl-item,.skill-cat').forEach(el=>{el.addEventListener('mouseenter',()=>cr.classList.add('big'));el.addEventListener('mouseleave',()=>cr.classList.remove('big'));});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>io.observe(el));
+function toggleNav(){document.querySelector('nav').classList.toggle('nav-mobile-open');}
+document.querySelectorAll('.nav-links a').forEach(a=>{a.addEventListener('click',()=>document.querySelector('nav').classList.remove('nav-mobile-open'));});
+function submitForm(e) {
+  e.preventDefault();
+  const d = Object.fromEntries(new FormData(e.target));
+  const b = 'Name: ' + d.name + '%0D%0AEmail: ' + d.email + '%0D%0AType: ' + d.project_type + '%0D%0ABudget: ' + d.budget + '%0D%0A%0D%0A' + d.description;
+  window.location.href = 'mailto:obedkyuneaaron1212@gmail.com?subject=Project Brief: ' + d.project_type + '&body=' + b;
+}
+</script>
+</body>
+</html>
