@@ -346,9 +346,11 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
   .nav-mobile-open .nav-links {
     display:flex; flex-direction:column; gap:0;
     position:fixed; top:72px; left:0; right:0; bottom:0;
-    background:#f7f3ed; padding:32px 24px;
+    background:#f7f3ed !important;
+    -webkit-backdrop-filter:none !important;
+    backdrop-filter:none !important;
+    padding:32px 24px;
     z-index:99; border-top:1px solid rgba(26,22,18,.1);
-    backdrop-filter:none; -webkit-backdrop-filter:none;
     opacity:1;
   }
   .nav-mobile-open .nav-links li { border-bottom:1px solid var(--rule); }
