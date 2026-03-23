@@ -330,6 +330,135 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
 .reveal-l.visible { opacity:1; transform:none; }
 .reveal-r { opacity:0; transform:translateX(36px); transition:opacity .75s ease, transform .75s ease; }
 .reveal-r.visible { opacity:1; transform:none; }
+
+/* ── MOBILE NAV MENU ── */
+.nav-menu-btn {
+  display:none; flex-direction:column; gap:5px;
+  background:transparent; border:none; cursor:none; padding:4px;
+}
+.nav-menu-btn span {
+  display:block; width:22px; height:2px;
+  background:var(--ink); border-radius:2px;
+  transition:all .3s;
+}
+@media(max-width:768px) {
+  .nav-menu-btn { display:flex; }
+  .nav-mobile-open .nav-links {
+    display:flex; flex-direction:column; gap:0;
+    position:fixed; top:72px; left:0; right:0; bottom:0;
+    background:var(--paper); padding:32px 24px;
+    z-index:99; border-top:1px solid var(--rule);
+    animation:fadeIn .2s ease;
+  }
+  .nav-mobile-open .nav-links li { border-bottom:1px solid var(--rule); }
+  .nav-mobile-open .nav-links a {
+    display:block; padding:18px 0;
+    font-size:13px; letter-spacing:.18em;
+  }
+  .nav-cta { display:none; }
+  .nav-mobile-open .nav-cta {
+    display:inline-flex; margin-top:24px;
+    width:100%; justify-content:center; padding:14px;
+  }
+}
+
+/* ── HERO RESPONSIVE ── */
+@media(max-width:900px) {
+  .h-big { font-size:clamp(56px,14vw,120px); }
+  .h-serif { font-size:clamp(38px,9vw,80px); }
+  .h-mid { flex-wrap:wrap; gap:16px; justify-content:center; }
+  .flank { max-width:100%; text-align:center !important; }
+  .flank-rule { margin:0 auto 10px !important; }
+}
+@media(max-width:600px) {
+  .hero { padding:72px 20px 0; }
+  .h-big { font-size:clamp(52px,16vw,90px); white-space:normal; }
+  .h-serif { font-size:clamp(32px,10vw,56px); }
+  .photo-wrap img, .photo-ph { width:clamp(72px,18vw,110px); height:clamp(90px,22vw,140px); }
+  .hero-cta { flex-direction:column; align-items:flex-start; gap:14px; }
+  .stats { gap:24px; }
+  .stat-n { font-size:24px; }
+  .hero-bar { flex-direction:column; gap:16px; align-items:flex-start; }
+}
+
+/* ── SERVICES RIBBON RESPONSIVE ── */
+@media(max-width:600px) {
+  .services-ribbon { padding:60px 20px; }
+  .ribbon-top { flex-direction:column; gap:16px; margin-bottom:40px; }
+  .svc-row { padding:18px 0; }
+  .svc-name { font-size:clamp(20px,6vw,32px); }
+}
+
+/* ── ABOUT RESPONSIVE ── */
+@media(max-width:768px) {
+  .about-loc-tag { left:0; bottom:-16px; }
+  .about-img-col { padding-bottom:32px; }
+  .about-big-word { font-size:52px; }
+}
+
+/* ── STACK RESPONSIVE ── */
+@media(max-width:600px) {
+  .stack-sec { padding:60px 20px; }
+  .tech-grid { grid-template-columns:repeat(2,1fr); }
+  .tech-cell:nth-child(4n) { border-right:1px solid var(--rule); }
+  .tech-cell:nth-child(2n) { border-right:none; }
+  .tech-cell:nth-last-child(-n+4) { border-bottom:1px solid var(--rule); }
+  .tech-cell:nth-last-child(-n+2) { border-bottom:none; }
+}
+
+/* ── WORKS RESPONSIVE ── */
+@media(max-width:600px) {
+  .works-sec { padding:60px 20px; }
+  .works-grid { grid-template-columns:1fr; }
+  .work-thumb { height:180px; }
+  .work-preview-btn { opacity:1; transform:none; }
+}
+
+/* ── NEEDS SECTION RESPONSIVE ── */
+@media(max-width:600px) {
+  .needs-sec { padding:48px 20px; }
+  .needs-top { flex-direction:column; gap:24px; }
+  .needs-right { max-width:100%; }
+  .pill-scatter { height:460px; }
+  .spill { font-size:13px; padding:10px 22px; }
+  .spill:nth-child(3) { left:48%; }
+  .spill:nth-child(6) { left:52%; }
+}
+
+/* ── FAQ RESPONSIVE ── */
+@media(max-width:600px) {
+  .faq-sec { padding:60px 20px; }
+  .faq-layout { gap:36px; }
+}
+
+/* ── CONTACT RESPONSIVE ── */
+@media(max-width:600px) {
+  .contact-sec { padding:60px 20px; }
+  .email-link { font-size:11px; padding:14px 20px; word-break:break-all; }
+  .contact-big { font-size:clamp(40px,12vw,80px); }
+  .contact-italic { font-size:clamp(32px,10vw,64px); }
+}
+
+/* ── PROJECT MODAL RESPONSIVE ── */
+@media(max-width:768px) {
+  #proj-modal { padding:12px; }
+  .pm-box { border-radius:8px; max-height:95vh; }
+  .pm-header { padding:14px 16px; flex-wrap:wrap; gap:8px; }
+  .pm-browser-bar { padding:8px 12px; }
+  .pm-info { padding:12px 16px; flex-direction:column; align-items:flex-start; }
+}
+
+/* ── PROJECT MODAL RESPONSIVE ── */
+@media(max-width:600px) {
+  #modal { padding:12px; }
+  .m-box { padding:28px 20px; }
+  .f-row { grid-template-columns:1fr; }
+}
+
+/* ── FOOTER RESPONSIVE ── */
+@media(max-width:600px) {
+  footer { padding:16px 20px; }
+}
 </style>
 </head>
 <body>
@@ -339,13 +468,13 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
 <nav>
   <a href="#" class="nav-logo">AARON<span class="nav-logo-dot">.</span></a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#stack">Stack</a></li>
-    <li><a href="#services">Services</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
     <li><a href="#projects">Works</a></li>
-    <li><a href="#faq">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
   <button class="nav-cta" onclick="openModal()">Start a Project</button>
+  <button class="nav-menu-btn" id="nav-menu-btn" onclick="toggleNav()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <section class="hero" id="home">
@@ -371,7 +500,7 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
       <span class="h-big accent" style="font-size:clamp(80px,13.5vw,188px);animation-delay:.2s">STACK DEV.</span>
     </div>
     <div class="hero-cta">
-      <a href="/cdn-cgi/l/email-protection#28474a4d4c43515d464d49495a4746191a191a684f45494144064b4745" class="btn-primary">
+      <a href="mailto:obedkyuneaaron1212@gmail.com" class="btn-primary">
         <i class="fa-solid fa-envelope"></i> Let's Chat
       </a>
       <span class="scroll-label">Scroll to explore</span>
@@ -708,7 +837,7 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
       <div class="sec-label">FAQ</div>
       <h2 class="sec-title" style="color:var(--paper);">Common<br>Questions.</h2>
       <p>Everything you need to know before we start building together.</p>
-      <a href="/cdn-cgi/l/email-protection#432c212627283a362d262222312c2d7271727103242e222a2f6d202c2e" class="faq-contact-nudge">Still have questions? Email me <i class="fa-solid fa-arrow-right"></i></a>
+      <a href="mailto:obedkyuneaaron1212@gmail.com" class="faq-contact-nudge">Still have questions? Email me <i class="fa-solid fa-arrow-right"></i></a>
     </div>
     <div class="faq-items reveal">
       <div class="faq-item"><details><summary><h4>What is your typical development process?</h4><i class="fa-solid fa-plus faq-ico"></i></summary><div class="faq-ans">I follow 4 steps: <strong>Requirement Gathering → Prototyping → Development → Deployment &amp; Testing</strong>. Clear communication at every stage means zero surprises.</div></details></div>
@@ -726,9 +855,9 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
     <div class="contact-big">GOT A PROJECT</div>
     <div class="contact-italic">in mind?</div>
     <p class="contact-sub">Have an idea? Let's talk. Available for freelance projects, full-time roles, and technical consulting.</p>
-    <a href="/cdn-cgi/l/email-protection#bbd4d9dedfd0c2ced5dedadac9d4d58a898a89fbdcd6dad2d795d8d4d6" class="email-link">
+    <a href="mailto:obedkyuneaaron1212@gmail.com" class="email-link">
       <i class="fa-solid fa-envelope"></i>
-      <span class="__cf_email__" data-cfemail="c0afa2a5a4abb9b5aea5a1a1b2afaef1f2f1f280a7ada1a9aceea3afad">[email&#160;protected]</span>
+      obedkyuneaaron1212@gmail.com
     </a>
     <div class="contact-soc">
       <a href="https://github.com/obedaaron" target="_blank" class="soc-btn"><i class="fa-brands fa-github"></i></a>
@@ -767,7 +896,7 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const cd = document.getElementById('cur-d');
 const cr = document.getElementById('cur-r');
 let mx = 0, my = 0, rx = 0, ry = 0;
@@ -811,6 +940,17 @@ function submitForm(e) {
   window.location.href = `mailto:obedkyuneaaron1212@gmail.com?subject=Project Brief: ${d.project_type}&body=${b}`;
   closeModal();
 }
+
+function toggleNav() {
+  document.querySelector('nav').classList.toggle('nav-mobile-open');
+  const btn = document.getElementById('nav-menu-btn');
+  btn.classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.querySelector('nav').classList.remove('nav-mobile-open');
+  });
+});
 
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
