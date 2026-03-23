@@ -56,12 +56,12 @@ nav {
 .nav-links a:hover::after { width:100%; }
 .nav-cta { display:inline-flex; align-items:center; gap:8px; border:1.5px solid var(--ink); border-radius:4px; padding:9px 22px; background:transparent; font-family:'Outfit',sans-serif; font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--ink); cursor:none; transition:all .25s; }
 .nav-cta:hover { background:var(--ink); color:var(--paper); }
-@media(max-width:768px) { nav { padding:0 20px; } .nav-links { display:none; } }
+@media(max-width:768px) { nav { padding:0 20px; } .nav-links { display:none; background:var(--paper) !important; } }
 
 .hero { min-height:100vh; padding:72px 56px 0; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden; background:var(--paper); }
-@media(max-width:768px) { .hero { padding:72px 20px 0; } }
+@media(max-width:768px) { .hero { padding:72px 20px 0; justify-content:flex-start; min-height:100svh; } }
 .hero::before { content:''; position:absolute; top:0; left:0; right:0; height:100%; background:repeating-linear-gradient(180deg, transparent 0px, transparent 47px, rgba(26,22,18,.04) 48px); pointer-events:none; }
-.hero-inner { position:relative; z-index:2; padding-top:48px; }
+.hero-inner { position:relative; z-index:2; padding-top:48px; } @media(max-width:768px) { .hero-inner { padding-top:16px; } }
 
 .h-row { display:flex; align-items:center; line-height:.88; }
 .h-mid { justify-content:space-between; align-items:center; }
@@ -346,9 +346,10 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
   .nav-mobile-open .nav-links {
     display:flex; flex-direction:column; gap:0;
     position:fixed; top:72px; left:0; right:0; bottom:0;
-    background:var(--paper); padding:32px 24px;
-    z-index:99; border-top:1px solid var(--rule);
-    animation:fadeIn .2s ease;
+    background:#f7f3ed; padding:32px 24px;
+    z-index:99; border-top:1px solid rgba(26,22,18,.1);
+    backdrop-filter:none; -webkit-backdrop-filter:none;
+    opacity:1;
   }
   .nav-mobile-open .nav-links li { border-bottom:1px solid var(--rule); }
   .nav-mobile-open .nav-links a {
@@ -372,6 +373,7 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
 }
 @media(max-width:600px) {
   .hero { padding:72px 20px 0; }
+  .hero-inner { padding-top:20px; }
   .h-big { font-size:clamp(52px,16vw,90px); white-space:normal; }
   .h-serif { font-size:clamp(32px,10vw,56px); }
   .photo-wrap img, .photo-ph { width:clamp(72px,18vw,110px); height:clamp(90px,22vw,140px); }
@@ -500,7 +502,7 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
       <span class="h-big accent" style="font-size:clamp(80px,13.5vw,188px);animation-delay:.2s">STACK DEV.</span>
     </div>
     <div class="hero-cta">
-      <a href="mailto:obedkyuneaaron1212@gmail.com" class="btn-primary">
+      <a href="/cdn-cgi/l/email-protection#6e010c0b0a05171b000b0f0f1c01005f5c5f5c2e09030f0702400d0103" class="btn-primary">
         <i class="fa-solid fa-envelope"></i> Let's Chat
       </a>
       <span class="scroll-label">Scroll to explore</span>
@@ -837,7 +839,7 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
       <div class="sec-label">FAQ</div>
       <h2 class="sec-title" style="color:var(--paper);">Common<br>Questions.</h2>
       <p>Everything you need to know before we start building together.</p>
-      <a href="mailto:obedkyuneaaron1212@gmail.com" class="faq-contact-nudge">Still have questions? Email me <i class="fa-solid fa-arrow-right"></i></a>
+      <a href="/cdn-cgi/l/email-protection#dbb4b9bebfb0a2aeb5bebabaa9b4b5eae9eae99bbcb6bab2b7f5b8b4b6" class="faq-contact-nudge">Still have questions? Email me <i class="fa-solid fa-arrow-right"></i></a>
     </div>
     <div class="faq-items reveal">
       <div class="faq-item"><details><summary><h4>What is your typical development process?</h4><i class="fa-solid fa-plus faq-ico"></i></summary><div class="faq-ans">I follow 4 steps: <strong>Requirement Gathering → Prototyping → Development → Deployment &amp; Testing</strong>. Clear communication at every stage means zero surprises.</div></details></div>
@@ -855,9 +857,9 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
     <div class="contact-big">GOT A PROJECT</div>
     <div class="contact-italic">in mind?</div>
     <p class="contact-sub">Have an idea? Let's talk. Available for freelance projects, full-time roles, and technical consulting.</p>
-    <a href="mailto:obedkyuneaaron1212@gmail.com" class="email-link">
+    <a href="/cdn-cgi/l/email-protection#cca3aea9a8a7b5b9a2a9adadbea3a2fdfefdfe8caba1ada5a0e2afa3a1" class="email-link">
       <i class="fa-solid fa-envelope"></i>
-      obedkyuneaaron1212@gmail.com
+      <span class="__cf_email__" data-cfemail="f6999493929d8f8398939797849998c7c4c7c4b6919b979f9ad895999b">[email&#160;protected]</span>
     </a>
     <div class="contact-soc">
       <a href="https://github.com/obedaaron" target="_blank" class="soc-btn"><i class="fa-brands fa-github"></i></a>
@@ -896,7 +898,7 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const cd = document.getElementById('cur-d');
 const cr = document.getElementById('cur-r');
 let mx = 0, my = 0, rx = 0, ry = 0;
@@ -1001,11 +1003,23 @@ function openProjModal(key) {
   document.getElementById('proj-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
+
 function closeProjModal() {
   document.getElementById('proj-modal').classList.remove('open');
+  document.getElementById('pm-preview-area').innerHTML = '';
   document.body.style.overflow = '';
 }
-document.getElementById('proj-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeProjModal(); });
+
+document.getElementById('proj-modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeProjModal();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeProjModal();
+    closeModal();
+  }
+});
 </script>
 </body>
 </html>
