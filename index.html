@@ -25,25 +25,17 @@
 html { scroll-behavior:smooth; }
 body { background:var(--paper); color:var(--ink); font-family:'Outfit',sans-serif; overflow-x:hidden; cursor:none; }
 
-#cur-d {
-  position:fixed; width:7px; height:7px; background:var(--orange);
-  border-radius:50%; pointer-events:none; z-index:9999;
-  transform:translate(-50%,-50%);
-}
-#cur-r {
-  position:fixed; width:34px; height:34px;
-  border:1.5px solid rgba(224,90,24,.55); border-radius:50%;
-  pointer-events:none; z-index:9998; transform:translate(-50%,-50%);
-  transition:width .2s, height .2s, background .2s, border-color .2s;
-}
+#cur-d { position:fixed; width:7px; height:7px; background:var(--orange); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); }
+#cur-r { position:fixed; width:34px; height:34px; border:1.5px solid rgba(224,90,24,.55); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width .2s, height .2s, background .2s, border-color .2s; }
 #cur-r.big { width:56px; height:56px; background:rgba(224,90,24,.08); border-color:var(--orange); }
 @media(pointer:coarse) { #cur-d,#cur-r { display:none; } body { cursor:auto; } }
 
+/* ── NAV ── */
 nav {
   position:fixed; top:0; left:0; right:0; z-index:100;
   padding:0 56px; height:72px;
   display:flex; justify-content:space-between; align-items:center;
-  background:rgba(10,9,7,.95);
+  background:rgba(10,9,7,.97);
   backdrop-filter:blur(20px);
   -webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid var(--rule);
@@ -58,48 +50,53 @@ nav {
 .nav-links a:hover::after { width:100%; }
 .nav-cta { display:inline-flex; align-items:center; gap:8px; border:1.5px solid rgba(240,236,228,.3); border-radius:4px; padding:9px 22px; background:transparent; font-family:'Outfit',sans-serif; font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--ink); cursor:none; transition:all .25s; }
 .nav-cta:hover { background:var(--orange); border-color:var(--orange); color:#fff; }
-@media(max-width:768px) { nav { padding:0 20px; } .nav-links { display:none; } }
 
-/* ── MOBILE NAV MENU ── */
 .nav-menu-btn {
   display:none; flex-direction:column; gap:5px;
   background:transparent; border:none; cursor:none; padding:4px;
 }
-.nav-menu-btn span {
-  display:block; width:22px; height:2px;
-  background:var(--ink); border-radius:2px;
-  transition:all .3s;
-}
+.nav-menu-btn span { display:block; width:22px; height:2px; background:var(--ink); border-radius:2px; transition:all .3s; }
+
 @media(max-width:768px) {
-  .nav-menu-btn { display:flex; }
-  .nav-mobile-open .nav-links {
-    display:flex !important; flex-direction:column; gap:0;
-    position:fixed; top:72px; left:0; right:0; bottom:0;
-    background:#0a0907 !important;
-    -webkit-backdrop-filter:none !important;
-    backdrop-filter:none !important;
-    padding:32px 24px;
-    z-index:99; border-top:1px solid var(--rule);
-    opacity:1;
-  }
-  .nav-mobile-open .nav-links li { border-bottom:1px solid var(--rule); }
-  .nav-mobile-open .nav-links a {
-    display:block; padding:18px 0;
-    font-size:13px; letter-spacing:.18em; color:var(--muted);
-  }
-  .nav-mobile-open .nav-links a:hover { color:var(--ink); }
+  nav { padding:0 20px; }
+  .nav-links { display:none !important; }
   .nav-cta { display:none; }
-  .nav-mobile-open .nav-cta {
-    display:inline-flex !important; margin-top:24px;
-    width:100%; justify-content:center; padding:14px;
-  }
-  .nav-mobile-open {
-    background:#0a0907 !important;
-    backdrop-filter:none !important;
-    -webkit-backdrop-filter:none !important;
-  }
+  .nav-menu-btn { display:flex; }
 }
 
+/* ── MOBILE MENU PANEL — lives in <body>, NOT inside <nav> ── */
+#mobile-menu {
+  display:none;
+  position:fixed;
+  top:72px; left:0; right:0; bottom:0;
+  background:#0a0907;
+  z-index:99;
+  padding:32px 24px;
+  border-top:1px solid var(--rule);
+  flex-direction:column;
+  overflow-y:auto;
+}
+#mobile-menu.open { display:flex; }
+#mobile-menu a {
+  display:block; padding:18px 0;
+  font-size:13px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--muted); text-decoration:none;
+  border-bottom:1px solid var(--rule);
+  transition:color .2s;
+}
+#mobile-menu a:hover { color:var(--ink); }
+#mobile-menu .mob-cta {
+  margin-top:28px;
+  display:flex; align-items:center; justify-content:center;
+  width:100%; padding:15px;
+  background:var(--orange); border:none; border-radius:4px;
+  font-family:'Outfit',sans-serif; font-size:11px; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; color:#fff;
+  cursor:pointer; transition:background .25s;
+}
+#mobile-menu .mob-cta:hover { background:var(--orange-light); }
+
+/* ── HERO ── */
 .hero { min-height:100vh; padding:72px 56px 0; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden; background:var(--paper); }
 @media(max-width:768px) { .hero { padding:72px 20px 0; justify-content:flex-start; min-height:100svh; } }
 .hero::before { content:''; position:absolute; top:0; left:0; right:0; height:100%; background:repeating-linear-gradient(180deg, transparent 0px, transparent 47px, rgba(240,236,228,.02) 48px); pointer-events:none; }
@@ -113,9 +110,7 @@ nav {
 .h-serif { font-family:'DM Serif Display',serif; font-style:italic; font-size:clamp(52px,8vw,118px); color:var(--ink); line-height:.9; animation:maskUp .95s .12s cubic-bezier(.16,1,.3,1) both; }
 
 .photo-wrap { display:inline-block; margin:0 clamp(8px,1vw,20px); flex-shrink:0; animation:fadeIn 1s .42s both; }
-.photo-wrap img, .photo-ph { width:clamp(92px,12vw,172px); height:clamp(118px,15.5vw,224px); object-fit:cover; object-position:top center; border-radius:200px; display:block; filter:grayscale(100%) contrast(1.2) brightness(.8); }
-.photo-ph { background:var(--warm); border:1.5px dashed rgba(240,236,228,.15); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:var(--muted); font-size:9px; letter-spacing:.12em; text-transform:uppercase; }
-.photo-ph i { font-size:22px; opacity:.4; }
+.photo-wrap img { width:clamp(92px,12vw,172px); height:clamp(118px,15.5vw,224px); object-fit:cover; object-position:top center; border-radius:200px; display:block; filter:grayscale(100%) contrast(1.2) brightness(.8); }
 
 .flank { font-size:10.5px; font-weight:400; line-height:1.85; color:var(--muted); max-width:160px; animation:fadeIn 1s .58s both; }
 .flank.right { text-align:right; }
@@ -136,21 +131,35 @@ nav {
 .hero-soc a { font-size:15px; color:var(--muted); text-decoration:none; transition:color .2s; }
 .hero-soc a:hover { color:var(--orange); }
 
+/* ── MARQUEE ── */
 .marquee-strip { background:#111009; overflow:hidden; padding:14px 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
 .marquee-track { display:flex; white-space:nowrap; animation:marqueeRoll 22s linear infinite; }
 .marquee-item { display:inline-flex; align-items:center; gap:20px; padding:0 40px; font-size:10px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:rgba(240,236,228,.25); }
 .marquee-item .m-dot { width:4px; height:4px; border-radius:50%; background:var(--orange); opacity:.7; flex-shrink:0; }
 
 section { position:relative; z-index:1; }
+
+/* ── SEC LABELS & TITLES — centered on mobile ── */
 .sec-label { font-size:9.5px; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:var(--orange); display:flex; align-items:center; gap:12px; margin-bottom:12px; }
 .sec-label::before { content:''; display:inline-block; width:20px; height:1px; background:var(--orange); }
 .sec-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(44px,6.5vw,88px); line-height:.92; letter-spacing:.02em; color:var(--ink); }
 
+@media(max-width:768px) {
+  .sec-label { justify-content:center; }
+  .sec-label::before { display:none; }
+  .sec-label::after { content:''; display:inline-block; width:20px; height:1px; background:var(--orange); }
+  .sec-title { text-align:center; }
+}
+
 /* ── SERVICES ── */
 .services-ribbon { background:#0d0b09; padding:88px 56px; border-top:1px solid var(--rule); }
-@media(max-width:768px) { .services-ribbon { padding:72px 20px; } }
+@media(max-width:768px) { .services-ribbon { padding:60px 20px; } }
 .ribbon-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:64px; flex-wrap:wrap; gap:24px; }
 .ribbon-desc { font-size:13px; font-weight:300; line-height:1.8; color:var(--muted); max-width:260px; }
+@media(max-width:600px) {
+  .ribbon-top { flex-direction:column; align-items:center; gap:16px; margin-bottom:40px; text-align:center; }
+  .ribbon-desc { max-width:100%; text-align:center; }
+}
 .svc-list { display:flex; flex-direction:column; }
 .svc-row { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:26px 0; border-top:1px solid var(--rule); transition:all .3s; cursor:none; }
 .svc-row:last-child { border-bottom:1px solid var(--rule); }
@@ -164,16 +173,14 @@ section { position:relative; z-index:1; }
 .svc-row:hover .svc-name { color:var(--ink); }
 .svc-row:hover .svc-tag { border-color:rgba(224,90,24,.4); color:var(--orange); }
 .svc-row:hover .svc-icon { background:var(--orange); border-color:var(--orange); color:#fff; transform:rotate(45deg); }
-@media(max-width:600px) { .svc-tags { display:none; } }
+@media(max-width:600px) { .svc-tags { display:none; } .svc-row { padding:18px 0; } .svc-name { font-size:clamp(20px,6vw,32px); } }
 
 /* ── ABOUT ── */
 .about-sec { padding:100px 56px; background:var(--paper); display:grid; grid-template-columns:5fr 7fr; gap:80px; align-items:center; }
 @media(max-width:900px) { .about-sec { grid-template-columns:1fr; gap:48px; padding:80px 20px; } }
 .about-img-col { position:relative; }
 .about-img-frame { position:relative; width:100%; }
-.about-img-frame img, .about-img-ph { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top; border-radius:6px; display:block; filter:grayscale(100%) contrast(1.2) brightness(.75); }
-.about-img-ph { background:var(--warm); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
-.about-img-ph i { font-size:36px; opacity:.35; }
+.about-img-frame img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top; border-radius:6px; display:block; filter:grayscale(100%) contrast(1.2) brightness(.75); }
 .bracket-tl, .bracket-br { position:absolute; width:28px; height:28px; pointer-events:none; }
 .bracket-tl { top:-10px; left:-10px; border-top:2px solid var(--orange); border-left:2px solid var(--orange); }
 .bracket-br { bottom:-10px; right:-10px; border-bottom:2px solid var(--orange); border-right:2px solid var(--orange); }
@@ -192,12 +199,20 @@ section { position:relative; z-index:1; }
 .trait i { font-size:17px; color:var(--orange); margin-bottom:9px; }
 .trait h4 { font-size:12px; font-weight:700; margin-bottom:4px; letter-spacing:.04em; color:var(--ink); }
 .trait p { font-size:11px; color:var(--muted); line-height:1.6; }
+@media(max-width:768px) {
+  .about-loc-tag { left:0; bottom:-16px; }
+  .about-img-col { padding-bottom:32px; }
+  .about-big-word { font-size:52px; text-align:center; }
+  .about-title { text-align:center; }
+  .about-body { text-align:center; }
+  .about-divider { margin:28px auto; }
+}
 
 /* ── STACK ── */
 .stack-sec { background:#0d0b09; padding:100px 56px; border-top:1px solid var(--rule); }
-@media(max-width:768px) { .stack-sec { padding:80px 20px; } }
+@media(max-width:768px) { .stack-sec { padding:60px 20px; } }
 .stack-head { display:grid; grid-template-columns:1fr 1fr; align-items:end; gap:40px; margin-bottom:56px; }
-@media(max-width:768px) { .stack-head { grid-template-columns:1fr; } }
+@media(max-width:768px) { .stack-head { grid-template-columns:1fr; text-align:center; } }
 .stack-sub { font-size:13px; font-weight:300; line-height:1.8; color:var(--muted); }
 .tech-grid { display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--rule); }
 @media(max-width:900px) { .tech-grid { grid-template-columns:repeat(2,1fr); } }
@@ -211,11 +226,19 @@ section { position:relative; z-index:1; }
 .tech-cell:hover i { color:var(--orange); }
 .tech-name { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:.06em; color:var(--ink); }
 .tech-desc { font-size:10.5px; color:var(--muted); line-height:1.6; }
+@media(max-width:600px) {
+  .tech-grid { grid-template-columns:repeat(2,1fr); }
+  .tech-cell:nth-child(4n) { border-right:1px solid var(--rule); }
+  .tech-cell:nth-child(2n) { border-right:none; }
+  .tech-cell:nth-last-child(-n+4) { border-bottom:1px solid var(--rule); }
+  .tech-cell:nth-last-child(-n+2) { border-bottom:none; }
+}
 
 /* ── WORKS ── */
 .works-sec { padding:100px 56px; background:var(--paper); border-top:1px solid var(--rule); }
-@media(max-width:768px) { .works-sec { padding:80px 20px; } }
+@media(max-width:768px) { .works-sec { padding:60px 20px; } }
 .works-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:56px; flex-wrap:wrap; gap:20px; }
+@media(max-width:768px) { .works-head { flex-direction:column; align-items:center; } }
 .gh-pill { display:inline-flex; align-items:center; gap:8px; font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; text-decoration:none; color:var(--muted); border:1px solid var(--rule); padding:9px 18px; border-radius:3px; transition:all .3s; }
 .gh-pill:hover { border-color:var(--orange); color:var(--orange); }
 .works-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
@@ -223,15 +246,13 @@ section { position:relative; z-index:1; }
 .work-card { background:var(--cream); border:1px solid var(--rule); border-radius:12px; display:flex; flex-direction:column; transition:border-color .3s, transform .3s, box-shadow .3s; cursor:none; overflow:hidden; position:relative; }
 .work-card:hover { border-color:rgba(224,90,24,.4); transform:translateY(-4px); box-shadow:0 20px 48px rgba(0,0,0,.5); }
 .work-thumb { height:220px; background:var(--warm); position:relative; overflow:hidden; border-bottom:1px solid var(--rule); }
-.work-preview-img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; transition:transform .6s cubic-bezier(.16,1,.3,1); }
-.work-card:hover .work-preview-img { transform:scale(1.04); }
-.work-thumb-icon { font-size:56px; color:var(--warm); transition:all .4s; }
-.work-card:hover .work-thumb-icon { color:var(--orange); transform:scale(1.08); }
+@media(max-width:600px) { .work-thumb { height:180px; } }
 .work-badge { position:absolute; top:14px; left:14px; z-index:2; font-size:8.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; padding:5px 12px; border-radius:3px; background:rgba(10,9,7,.85); color:var(--ink); border:1px solid var(--rule); backdrop-filter:blur(8px); }
 .work-founder-badge { position:absolute; top:14px; right:14px; z-index:2; font-size:8px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; padding:5px 12px; border-radius:3px; background:var(--orange); color:#fff; display:flex; align-items:center; gap:5px; }
 .work-preview-btn { position:absolute; bottom:14px; right:14px; z-index:2; background:rgba(10,9,7,.85); backdrop-filter:blur(8px); border:1px solid var(--rule); border-radius:4px; padding:7px 14px; font-size:9px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink); cursor:none; display:flex; align-items:center; gap:6px; transition:all .25s; opacity:0; transform:translateY(6px); }
 .work-card:hover .work-preview-btn { opacity:1; transform:translateY(0); }
 .work-preview-btn:hover { background:var(--orange); border-color:var(--orange); color:#fff; }
+@media(max-width:600px) { .work-preview-btn { opacity:1; transform:none; } }
 .work-body { padding:24px 28px 28px; flex:1; }
 .work-num { font-family:'Bebas Neue',sans-serif; font-size:12px; letter-spacing:.12em; color:var(--orange); margin-bottom:8px; display:block; }
 .work-title { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:.03em; color:var(--ink); margin-bottom:8px; transition:color .3s; }
@@ -259,7 +280,6 @@ section { position:relative; z-index:1; }
 .pm-dot { width:9px; height:9px; border-radius:50%; }
 .pm-url { flex:1; background:var(--cream); border:1px solid var(--rule); border-radius:4px; padding:5px 12px; font-size:11px; color:var(--muted); }
 .pm-preview-area { flex:1; overflow-y:auto; min-height:0; }
-.pm-preview-area iframe { width:100%; height:100%; min-height:520px; border:none; display:block; }
 .pm-info { padding:16px 24px; border-top:1px solid var(--rule); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; flex-shrink:0; background:#0d0b09; }
 .pm-tags { display:flex; gap:8px; flex-wrap:wrap; }
 .pm-tag { font-size:8.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; padding:4px 10px; border-radius:3px; border:1px solid var(--rule); color:var(--muted); }
@@ -269,20 +289,29 @@ section { position:relative; z-index:1; }
 .pm-link.solid:hover { background:var(--orange-light); }
 .pm-link.outline { border:1px solid var(--rule); color:var(--muted); }
 .pm-link.outline:hover { border-color:var(--orange); color:var(--orange); }
+@media(max-width:768px) {
+  #proj-modal { padding:12px; }
+  .pm-box { border-radius:8px; max-height:95vh; }
+  .pm-header { padding:14px 16px; flex-wrap:wrap; gap:8px; }
+  .pm-browser-bar { padding:8px 12px; }
+  .pm-info { padding:12px 16px; flex-direction:column; align-items:flex-start; }
+}
 
 /* ── NEEDS ── */
 .needs-sec { background:var(--orange); padding:80px 56px; position:relative; overflow:hidden; }
 @media(max-width:768px) { .needs-sec { padding:64px 20px; } }
 .needs-sec::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(0,0,0,.06) 48px), repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(0,0,0,.06) 48px); }
 .needs-top { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:32px; position:relative; z-index:2; margin-bottom:64px; }
+@media(max-width:768px) { .needs-top { flex-direction:column; gap:24px; } }
 .needs-h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(56px,9vw,128px); line-height:.9; color:#fff; letter-spacing:.02em; }
 .needs-h2 { font-family:'DM Serif Display',serif; font-style:italic; font-size:clamp(44px,7vw,100px); color:#fff; line-height:.9; }
 .needs-right { max-width:240px; }
+@media(max-width:768px) { .needs-right { max-width:100%; } }
 .needs-right p { font-size:13px; font-weight:300; color:rgba(255,255,255,.75); line-height:1.8; margin-bottom:20px; }
 .btn-outline-white { display:inline-flex; align-items:center; gap:8px; border:1.5px solid rgba(255,255,255,.5); border-radius:4px; padding:11px 26px; background:transparent; font-family:'Outfit',sans-serif; font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#fff; cursor:none; transition:all .25s; }
 .btn-outline-white:hover { background:#fff; color:var(--orange); }
 .pill-scatter { position:relative; z-index:2; height:280px; }
-@media(max-width:768px) { .pill-scatter { height:380px; } }
+@media(max-width:768px) { .pill-scatter { height:460px; } }
 .spill { position:absolute; background:#0a0907; color:var(--ink); font-family:'DM Serif Display',serif; font-style:italic; font-size:clamp(14px,1.8vw,19px); padding:13px 30px; border-radius:100px; white-space:nowrap; cursor:none; box-shadow:0 3px 20px rgba(0,0,0,.4); transition:transform .3s ease, box-shadow .3s ease; border:1px solid rgba(240,236,228,.08); }
 .spill:hover { box-shadow:0 14px 40px rgba(0,0,0,.55); transform:translateY(-8px) scale(1.04) !important; }
 .spill:nth-child(1) { top:0; left:3%; transform:rotate(-2.5deg); }
@@ -295,15 +324,21 @@ section { position:relative; z-index:1; }
 .spill:nth-child(8) { top:168px; left:24%; transform:rotate(-1.8deg); }
 .spill:nth-child(9) { top:172px; left:50%; transform:rotate(1.4deg); }
 .spill:nth-child(10) { top:252px; left:8%; transform:rotate(-0.9deg); }
+@media(max-width:600px) {
+  .spill { font-size:13px; padding:10px 22px; }
+  .spill:nth-child(3) { left:48%; }
+  .spill:nth-child(6) { left:52%; }
+}
 
 /* ── FAQ ── */
 .faq-sec { background:#0d0b09; color:var(--ink); padding:100px 56px; border-top:1px solid var(--rule); }
-@media(max-width:768px) { .faq-sec { padding:80px 20px; } }
+@media(max-width:768px) { .faq-sec { padding:60px 20px; } }
 .faq-layout { display:grid; grid-template-columns:1fr 1.4fr; gap:80px; align-items:start; }
 @media(max-width:900px) { .faq-layout { grid-template-columns:1fr; gap:48px; } }
 .faq-left .sec-label { color:var(--orange); }
 .faq-left .sec-title { color:var(--ink); margin-bottom:20px; }
 .faq-left p { font-size:14px; font-weight:300; color:var(--muted); line-height:1.85; margin-bottom:32px; }
+@media(max-width:768px) { .faq-left { text-align:center; } .faq-left p { text-align:center; } }
 .faq-contact-nudge { display:inline-flex; align-items:center; gap:10px; font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--orange); text-decoration:none; transition:gap .25s; }
 .faq-contact-nudge:hover { gap:16px; }
 .faq-contact-nudge i { transition:transform .25s; }
@@ -322,7 +357,7 @@ section { position:relative; z-index:1; }
 
 /* ── CONTACT ── */
 .contact-sec { background:var(--paper); padding:120px 56px; text-align:center; overflow:hidden; position:relative; border-top:1px solid var(--rule); }
-@media(max-width:768px) { .contact-sec { padding:80px 20px; } }
+@media(max-width:768px) { .contact-sec { padding:60px 20px; } }
 .contact-sec::before { content:'HIRE ME'; position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); font-family:'Bebas Neue',sans-serif; font-size:clamp(80px,14vw,200px); letter-spacing:.08em; white-space:nowrap; color:var(--orange); opacity:.04; pointer-events:none; line-height:1; }
 .contact-inner { position:relative; z-index:2; }
 .contact-inner .sec-label { justify-content:center; margin-bottom:20px; }
@@ -335,12 +370,18 @@ section { position:relative; z-index:1; }
 .email-link i { color:var(--orange); }
 .email-link:hover { background:var(--orange); border-color:var(--orange); color:#fff; transform:translateY(-3px); box-shadow:0 18px 48px rgba(224,90,24,.32); }
 .email-link:hover i { color:#fff; }
+@media(max-width:600px) {
+  .contact-big { font-size:clamp(40px,12vw,80px); }
+  .contact-italic { font-size:clamp(32px,10vw,64px); }
+  .email-link { font-size:11px; padding:14px 20px; word-break:break-all; }
+}
 .contact-soc { display:flex; justify-content:center; gap:14px; margin-top:40px; }
 .soc-btn { width:46px; height:46px; border-radius:5px; border:1px solid var(--rule); display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:17px; text-decoration:none; transition:all .28s; }
 .soc-btn:hover { border-color:var(--orange); color:var(--orange); transform:translateY(-3px); }
 
+/* ── FOOTER ── */
 footer { background:#0d0b09; padding:22px 56px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-top:1px solid var(--rule); }
-@media(max-width:768px) { footer { padding:18px 20px; flex-direction:column; text-align:center; } }
+@media(max-width:768px) { footer { padding:16px 20px; flex-direction:column; text-align:center; } }
 footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
 .foot-loc { display:flex; align-items:center; gap:8px; font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
 .foot-loc i { color:var(--orange); }
@@ -349,6 +390,7 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
 #modal { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.82); backdrop-filter:blur(14px); padding:24px; }
 #modal.open { display:flex; }
 .m-box { background:#0d0b09; border:1px solid var(--rule); border-radius:6px; padding:52px; max-width:580px; width:100%; max-height:90vh; overflow-y:auto; position:relative; box-shadow:0 32px 80px rgba(0,0,0,.7); }
+@media(max-width:600px) { #modal { padding:12px; } .m-box { padding:28px 20px; } }
 .m-close { position:absolute; top:20px; right:20px; width:34px; height:34px; border-radius:4px; border:1px solid var(--rule); background:transparent; font-size:15px; cursor:none; display:flex; align-items:center; justify-content:center; color:var(--muted); transition:all .2s; }
 .m-close:hover { border-color:var(--orange); color:var(--orange); }
 .m-box h2 { font-family:'Bebas Neue',sans-serif; font-size:44px; letter-spacing:.04em; margin-bottom:6px; color:var(--ink); }
@@ -390,73 +432,15 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
   .flank-rule { margin:0 auto 10px !important; }
 }
 @media(max-width:600px) {
-  .hero { padding:72px 20px 0; }
   .hero-inner { padding-top:20px; }
   .h-big { font-size:clamp(52px,16vw,90px); white-space:normal; }
   .h-serif { font-size:clamp(32px,10vw,56px); }
-  .photo-wrap img, .photo-ph { width:clamp(72px,18vw,110px); height:clamp(90px,22vw,140px); }
+  .photo-wrap img { width:clamp(72px,18vw,110px); height:clamp(90px,22vw,140px); }
   .hero-cta { flex-direction:column; align-items:flex-start; gap:14px; }
   .stats { gap:24px; }
   .stat-n { font-size:24px; }
   .hero-bar { flex-direction:column; gap:16px; align-items:flex-start; }
 }
-@media(max-width:600px) {
-  .services-ribbon { padding:60px 20px; }
-  .ribbon-top { flex-direction:column; gap:16px; margin-bottom:40px; }
-  .svc-row { padding:18px 0; }
-  .svc-name { font-size:clamp(20px,6vw,32px); }
-}
-@media(max-width:768px) {
-  .about-loc-tag { left:0; bottom:-16px; }
-  .about-img-col { padding-bottom:32px; }
-  .about-big-word { font-size:52px; }
-}
-@media(max-width:600px) {
-  .stack-sec { padding:60px 20px; }
-  .tech-grid { grid-template-columns:repeat(2,1fr); }
-  .tech-cell:nth-child(4n) { border-right:1px solid var(--rule); }
-  .tech-cell:nth-child(2n) { border-right:none; }
-  .tech-cell:nth-last-child(-n+4) { border-bottom:1px solid var(--rule); }
-  .tech-cell:nth-last-child(-n+2) { border-bottom:none; }
-}
-@media(max-width:600px) {
-  .works-sec { padding:60px 20px; }
-  .works-grid { grid-template-columns:1fr; }
-  .work-thumb { height:180px; }
-  .work-preview-btn { opacity:1; transform:none; }
-}
-@media(max-width:600px) {
-  .needs-sec { padding:48px 20px; }
-  .needs-top { flex-direction:column; gap:24px; }
-  .needs-right { max-width:100%; }
-  .pill-scatter { height:460px; }
-  .spill { font-size:13px; padding:10px 22px; }
-  .spill:nth-child(3) { left:48%; }
-  .spill:nth-child(6) { left:52%; }
-}
-@media(max-width:600px) {
-  .faq-sec { padding:60px 20px; }
-  .faq-layout { gap:36px; }
-}
-@media(max-width:600px) {
-  .contact-sec { padding:60px 20px; }
-  .email-link { font-size:11px; padding:14px 20px; word-break:break-all; }
-  .contact-big { font-size:clamp(40px,12vw,80px); }
-  .contact-italic { font-size:clamp(32px,10vw,64px); }
-}
-@media(max-width:768px) {
-  #proj-modal { padding:12px; }
-  .pm-box { border-radius:8px; max-height:95vh; }
-  .pm-header { padding:14px 16px; flex-wrap:wrap; gap:8px; }
-  .pm-browser-bar { padding:8px 12px; }
-  .pm-info { padding:12px 16px; flex-direction:column; align-items:flex-start; }
-}
-@media(max-width:600px) {
-  #modal { padding:12px; }
-  .m-box { padding:28px 20px; }
-  .f-row { grid-template-columns:1fr; }
-}
-@media(max-width:600px) { footer { padding:16px 20px; } }
 </style>
 </head>
 <body>
@@ -472,8 +456,19 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="nav-cta" onclick="openModal()">Start a Project</button>
-  <button class="nav-menu-btn" id="nav-menu-btn" onclick="toggleNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <button class="nav-menu-btn" id="nav-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU: outside <nav> so nav's backdrop-filter CANNOT bleed through -->
+<div id="mobile-menu">
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#services" onclick="closeMobileMenu()">Services</a>
+  <a href="#projects" onclick="closeMobileMenu()">Works</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+  <button class="mob-cta" onclick="closeMobileMenu(); openModal();">Start a Project</button>
+</div>
 
 <section class="hero" id="home">
   <div class="hero-inner">
@@ -638,11 +633,6 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
               <div style="background:#ff4d1a;color:#fff;padding:6px 14px;border-radius:100px;font-size:9px;font-weight:700;">Start Free</div>
               <div style="border:1px solid rgba(255,255,255,.25);color:#fff;padding:6px 12px;border-radius:100px;font-size:9px;">Demo</div>
             </div>
-            <div style="display:flex;gap:16px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);">
-              <div><div style="font-size:16px;font-weight:900;color:#fff;">10<span style="color:#ff4d1a;">min</span></div><div style="font-size:8px;color:#666;margin-top:1px;">Launch</div></div>
-              <div><div style="font-size:16px;font-weight:900;color:#fff;">$0</div><div style="font-size:8px;color:#666;margin-top:1px;">Dev Cost</div></div>
-              <div><div style="font-size:16px;font-weight:900;color:#fff;">100<span style="color:#ff4d1a;">%</span></div><div style="font-size:8px;color:#666;margin-top:1px;">No-Code</div></div>
-            </div>
           </div>
         </div>
         <span class="work-badge">SaaS Platform</span>
@@ -664,21 +654,17 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
       <div class="work-thumb" style="padding:0;overflow:hidden;">
         <div style="width:100%;height:100%;background:#0d0b09;display:grid;grid-template-columns:64px 1fr;pointer-events:none;font-family:sans-serif;">
           <div style="background:#111009;padding:12px 8px;display:flex;flex-direction:column;gap:6px;border-right:1px solid rgba(240,236,228,.06);">
-            <div style="font-size:7px;letter-spacing:.15em;text-transform:uppercase;color:#444;margin-bottom:6px;">Nav</div>
             <div style="padding:6px 8px;border-radius:4px;font-size:8px;color:#fff;background:rgba(224,90,24,.3);">Dash</div>
             <div style="padding:6px 8px;font-size:8px;color:#444;">Contacts</div>
             <div style="padding:6px 8px;font-size:8px;color:#444;">Pipeline</div>
-            <div style="padding:6px 8px;font-size:8px;color:#444;">Reports</div>
           </div>
           <div style="padding:14px 12px;">
-            <div style="font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:10px;">Dashboard</div>
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px;">
               <div style="background:#111009;border:1px solid rgba(240,236,228,.06);border-radius:6px;padding:8px;"><div style="font-size:14px;font-weight:800;color:#f0ece4;">847</div><div style="font-size:7px;color:#555;margin-top:2px;">Contacts</div></div>
               <div style="background:#111009;border:1px solid rgba(240,236,228,.06);border-radius:6px;padding:8px;"><div style="font-size:14px;font-weight:800;color:#f0ece4;">23</div><div style="font-size:7px;color:#555;margin-top:2px;">New</div></div>
               <div style="background:#111009;border:1px solid rgba(240,236,228,.06);border-radius:6px;padding:8px;"><div style="font-size:14px;font-weight:800;color:#e05a18;">$94k</div><div style="font-size:7px;color:#555;margin-top:2px;">Pipeline</div></div>
             </div>
             <div style="background:#111009;border:1px solid rgba(240,236,228,.06);border-radius:6px;padding:10px;">
-              <div style="font-size:7px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#444;margin-bottom:8px;">Recent</div>
               <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(240,236,228,.04);"><span style="font-size:9px;font-weight:600;color:#aaa;">Amara Okafor</span><span style="font-size:7px;color:#e05a18;font-weight:700;">New</span></div>
               <div style="display:flex;justify-content:space-between;padding:5px 0;"><span style="font-size:9px;font-weight:600;color:#aaa;">James Chen</span><span style="font-size:7px;color:#e05a18;font-weight:700;">Active</span></div>
             </div>
@@ -710,7 +696,6 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
             <span style="padding-left:12px;display:block;"><span style="color:#79c0ff;">"status"</span>: <span style="color:#a5d6ff;">"success"</span>,</span>
             <span style="padding-left:12px;display:block;"><span style="color:#79c0ff;">"records"</span>: <span style="color:#79c0ff;">48291</span>,</span>
             <span style="padding-left:12px;display:block;"><span style="color:#79c0ff;">"accuracy"</span>: <span style="color:#79c0ff;">0.943</span>,</span>
-            <span style="padding-left:12px;display:block;"><span style="color:#79c0ff;">"insight"</span>: <span style="color:#a5d6ff;">"Revenue +18.4%"</span>,</span>
             <span style="padding-left:12px;display:block;"><span style="color:#79c0ff;">"ms"</span>: <span style="color:#79c0ff;">143</span></span>
             <span style="color:#79c0ff;">}</span>
           </div>
@@ -739,7 +724,6 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
         <div style="width:100%;height:100%;background:#0a0907;font-family:sans-serif;pointer-events:none;">
           <div style="background:#111009;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(240,236,228,.06);">
             <div style="font-size:13px;font-weight:800;color:#f0ece4;letter-spacing:.06em;">SHOP<span style="color:#e05a18;">.</span></div>
-            <div style="display:flex;gap:12px;"><span style="color:#444;font-size:9px;">Men</span><span style="color:#444;font-size:9px;">Women</span><span style="color:#444;font-size:9px;">Sale</span></div>
             <div style="color:#f0ece4;font-size:10px;">🛍 3</div>
           </div>
           <div style="padding:12px 14px;">
@@ -895,116 +879,95 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
 </div>
 
 <script>
+/* ── CURSOR ── */
 const cd = document.getElementById('cur-d');
 const cr = document.getElementById('cur-r');
-let mx = 0, my = 0, rx = 0, ry = 0;
-
+let mx=0, my=0, rx=0, ry=0;
 window.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cd.style.left = mx + 'px'; cd.style.top = my + 'px';
+  mx=e.clientX; my=e.clientY;
+  cd.style.left=mx+'px'; cd.style.top=my+'px';
 });
-(function loop() {
-  rx += (mx - rx) * 0.28; ry += (my - ry) * 0.28;
-  cr.style.left = rx + 'px'; cr.style.top = ry + 'px';
-  requestAnimationFrame(loop);
-})();
-
-document.querySelectorAll('a,button,.work-card,.trait,.svc-row,.tech-cell,.spill,details summary').forEach(el => {
-  el.addEventListener('mouseenter', () => cr.classList.add('big'));
-  el.addEventListener('mouseleave', () => cr.classList.remove('big'));
+(function loop(){ rx+=(mx-rx)*.28; ry+=(my-ry)*.28; cr.style.left=rx+'px'; cr.style.top=ry+'px'; requestAnimationFrame(loop); })();
+document.querySelectorAll('a,button,.work-card,.trait,.svc-row,.tech-cell,.spill,details summary').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cr.classList.add('big'));
+  el.addEventListener('mouseleave',()=>cr.classList.remove('big'));
 });
 
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => io.observe(el));
+/* ── SCROLL REVEAL ── */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);} });
+},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>io.observe(el));
 
-function openModal() { document.getElementById('modal').classList.add('open'); document.body.style.overflow = 'hidden'; }
-function closeModal() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow = ''; }
-document.getElementById('modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
-
-function submitForm(e) {
-  e.preventDefault();
-  const d = Object.fromEntries(new FormData(e.target));
-  const b = `Name: ${d.name}%0D%0AEmail: ${d.email}%0D%0AType: ${d.project_type}%0D%0ABudget: ${d.budget}%0D%0A%0D%0A${d.description}`;
-  window.location.href = `mailto:obedkyuneaaron1212@gmail.com?subject=Project Brief: ${d.project_type}&body=${b}`;
-  closeModal();
+/* ── MOBILE MENU ── */
+function toggleMobileMenu(){
+  const menu=document.getElementById('mobile-menu');
+  const btn=document.getElementById('nav-menu-btn');
+  const isOpen=menu.classList.toggle('open');
+  document.body.style.overflow=isOpen?'hidden':'';
+  const s=btn.querySelectorAll('span');
+  if(isOpen){ s[0].style.transform='translateY(7px) rotate(45deg)'; s[1].style.opacity='0'; s[2].style.transform='translateY(-7px) rotate(-45deg)'; }
+  else { s[0].style.transform=''; s[1].style.opacity=''; s[2].style.transform=''; }
+}
+function closeMobileMenu(){
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.body.style.overflow='';
+  const s=document.getElementById('nav-menu-btn').querySelectorAll('span');
+  s[0].style.transform=''; s[1].style.opacity=''; s[2].style.transform='';
 }
 
-function toggleNav() {
-  document.querySelector('nav').classList.toggle('nav-mobile-open');
-}
-document.querySelectorAll('.nav-links a').forEach(a => {
-  a.addEventListener('click', () => {
-    document.querySelector('nav').classList.remove('nav-mobile-open');
-  });
-});
-
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
     e.preventDefault();
-    const t = document.querySelector(a.getAttribute('href'));
-    if (t) t.scrollIntoView({ behavior: 'smooth' });
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth'});
   });
 });
 
-const projects = {
-  skoolly: {
-    title: 'Skoolly', badge: 'SaaS Platform', founder: true, url: 'skoolly.app',
-    tags: ['PHP','MySQL','JavaScript','SaaS','No-Code Builder'],
-    ghLink: 'https://github.com/obedaaron',
-    preview: `<div style="background:#111;min-height:520px;font-family:sans-serif;color:#fff;overflow:hidden;padding:60px 48px;"><div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:14px;">Launch in 10 Minutes</div><div style="font-size:clamp(36px,6vw,64px);font-weight:900;line-height:.9;letter-spacing:-2px;">Your school portal,<br>minus the<br><span style='color:#ff4d1a;'>developer.</span></div><div style="display:flex;gap:12px;margin-top:28px;"><div style="background:#ff4d1a;color:#fff;padding:12px 28px;border-radius:100px;font-size:13px;font-weight:700;">Start Building Free</div><div style="border:1px solid rgba(255,255,255,.3);color:#fff;padding:12px 24px;border-radius:100px;font-size:13px;">Watch Demo</div></div><div style="display:flex;gap:40px;margin-top:48px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);"><div><div style="font-size:26px;font-weight:900;">10<span style='color:#ff4d1a;'>min</span></div><div style="font-size:11px;color:#888;margin-top:4px;">To Launch</div></div><div><div style="font-size:26px;font-weight:900;">$0</div><div style="font-size:11px;color:#888;margin-top:4px;">Dev Cost</div></div><div><div style="font-size:26px;font-weight:900;">100<span style='color:#ff4d1a;'>%</span></div><div style="font-size:11px;color:#888;margin-top:4px;">No-Code</div></div></div></div>`
-  },
-  crm: {
-    title: 'Custom CRM Suite', badge: 'SaaS', founder: false, url: 'github.com/obedaaron',
-    tags: ['React','PHP','MySQL','REST API'],
-    ghLink: 'https://github.com/obedaaron',
-    preview: `<div style="background:#0a0907;min-height:520px;font-family:sans-serif;overflow:hidden;"><div style="background:#111009;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(240,236,228,.06);"><div style="font-size:18px;font-weight:800;color:#f0ece4;letter-spacing:.1em;">CRM<span style='color:#e05a18;'>.</span></div><div style="display:flex;gap:20px;"><span style="color:#555;font-size:12px;">Dashboard</span><span style="color:#555;font-size:12px;">Contacts</span><span style="color:#555;font-size:12px;">Pipeline</span></div></div><div style="display:grid;grid-template-columns:200px 1fr;min-height:460px;"><div style="background:#0d0b09;padding:20px 14px;border-right:1px solid rgba(240,236,228,.06);"><div style="padding:9px 12px;border-radius:5px;font-size:12px;color:#fff;background:rgba(224,90,24,.2);margin-bottom:4px;">Dashboard</div><div style="padding:9px 12px;font-size:12px;color:#444;margin-bottom:4px;">Contacts</div><div style="padding:9px 12px;font-size:12px;color:#444;margin-bottom:4px;">Pipeline</div><div style="padding:9px 12px;font-size:12px;color:#444;">Reports</div></div><div style="padding:24px 28px;"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;"><div style="background:#111009;border:1px solid rgba(240,236,228,.06);border-radius:8px;padding:18px;"><div style="font-size:24px;font-weight:800;color:#f0ece4;">847</div><div style="font-size:11px;color:#555;margin-top:4px;">Total Contacts</div></div><div style="background:#111009;border:1px solid rgba(240,236,228,.06);border-radius:8px;padding:18px;"><div style="font-size:24px;font-weight:800;color:#f0ece4;">23</div><div style="font-size:11px;color:#555;margin-top:4px;">New This Week</div></div><div style="background:#111009;border:1px solid rgba(240,236,228,.06);border-radius:8px;padding:18px;"><div style="font-size:24px;font-weight:800;color:#e05a18;">$94k</div><div style="font-size:11px;color:#555;margin-top:4px;">Pipeline Value</div></div></div><div style="background:#111009;border:1px solid rgba(240,236,228,.06);border-radius:8px;padding:18px;"><div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#444;margin-bottom:14px;">Recent Contacts</div><div style="padding:10px 0;border-bottom:1px solid rgba(240,236,228,.04);display:flex;justify-content:space-between;"><div><div style="font-size:13px;font-weight:600;color:#aaa;">Amara Okafor</div><div style="font-size:11px;color:#555;">CEO — TechCorp</div></div><div style="font-size:9px;font-weight:700;padding:3px 10px;border-radius:3px;background:rgba(224,90,24,.15);color:#e05a18;align-self:center;">New</div></div><div style="padding:10px 0;display:flex;justify-content:space-between;"><div><div style="font-size:13px;font-weight:600;color:#aaa;">James Chen</div><div style="font-size:11px;color:#555;">Director — Nova Inc</div></div><div style="font-size:9px;font-weight:700;padding:3px 10px;border-radius:3px;background:rgba(224,90,24,.15);color:#e05a18;align-self:center;">Active</div></div></div></div></div></div>`
-  },
-  api: {
-    title: 'Data Analytics API', badge: 'AI / API', founder: false, url: 'github.com/obedaaron',
-    tags: ['Python','FastAPI','PostgreSQL','ML'],
-    ghLink: 'https://github.com/obedaaron',
-    preview: `<div style="background:#0d1117;min-height:520px;font-family:'Courier New',monospace;color:#c9d1d9;padding:32px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;"><div style="background:#238636;color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:4px;font-family:sans-serif;">200 OK</div><div style="font-size:12px;color:#8b949e;">GET /api/v1/analytics/summary</div></div><div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:24px;font-size:12px;line-height:1.8;"><span style="color:#79c0ff;">{</span><br><span style="padding-left:20px;display:block;"><span style="color:#79c0ff;">"status"</span>: <span style="color:#a5d6ff;">"success"</span>,</span><span style="padding-left:20px;display:block;"><span style="color:#79c0ff;">"records_processed"</span>: <span style="color:#79c0ff;">48291</span>,</span><span style="padding-left:20px;display:block;"><span style="color:#79c0ff;">"accuracy"</span>: <span style="color:#79c0ff;">0.943</span>,</span><span style="padding-left:20px;display:block;"><span style="color:#79c0ff;">"insights"</span>: [<span style="color:#a5d6ff;">"Revenue +18.4% MoM"</span>, <span style="color:#a5d6ff;">"Anomaly: Nov 12"</span>],</span><span style="padding-left:20px;display:block;"><span style="color:#79c0ff;">"processing_ms"</span>: <span style="color:#79c0ff;">143</span></span><span style="color:#79c0ff;">}</span></div><div style="margin-top:20px;display:flex;gap:16px;flex-wrap:wrap;"><div style="background:#161b22;border:1px solid #30363d;border-radius:6px;padding:12px 16px;font-size:11px;color:#8b949e;">⚡ 143ms avg</div><div style="background:#161b22;border:1px solid #30363d;border-radius:6px;padding:12px 16px;font-size:11px;color:#8b949e;">🔒 JWT Auth</div><div style="background:#161b22;border:1px solid #30363d;border-radius:6px;padding:12px 16px;font-size:11px;color:#8b949e;">📊 ML Powered</div></div></div>`
-  },
-  ecom: {
-    title: 'E-Commerce Platform', badge: 'E-Commerce', founder: false, url: 'github.com/obedaaron',
-    tags: ['PHP','JavaScript','MySQL','MVC'],
-    ghLink: 'https://github.com/obedaaron',
-    preview: `<div style="background:#0a0907;min-height:520px;font-family:sans-serif;color:#f0ece4;overflow:hidden;"><div style="background:#111009;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(240,236,228,.06);"><div style="font-size:16px;font-weight:800;color:#f0ece4;letter-spacing:.06em;">SHOP<span style='color:#e05a18;'>.</span></div><div style="display:flex;gap:20px;"><span style="color:#444;font-size:12px;">Men</span><span style="color:#444;font-size:12px;">Women</span><span style="color:#444;font-size:12px;">Sale</span></div><div style="color:#f0ece4;font-size:13px;">🛍 3</div></div><div style="padding:24px 32px;"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;"><div style="border:1px solid rgba(240,236,228,.06);border-radius:10px;overflow:hidden;background:#111009;"><div style="height:130px;background:linear-gradient(135deg,#1a1814,#252018);display:flex;align-items:center;justify-content:center;font-size:48px;">👟</div><div style="padding:12px 14px;"><div style="font-size:13px;font-weight:600;color:#aaa;">Premium Sneakers</div><div style="display:flex;justify-content:space-between;margin-top:6px;align-items:center;"><span style="font-size:14px;font-weight:700;color:#e05a18;">$149</span><div style="background:#e05a18;color:#fff;font-size:9px;font-weight:700;padding:4px 10px;border-radius:3px;">ADD</div></div></div></div><div style="border:1px solid rgba(240,236,228,.06);border-radius:10px;overflow:hidden;background:#111009;"><div style="height:130px;background:linear-gradient(135deg,#1a1814,#252018);display:flex;align-items:center;justify-content:center;font-size:48px;">⌚</div><div style="padding:12px 14px;"><div style="font-size:13px;font-weight:600;color:#aaa;">Minimal Watch</div><div style="display:flex;justify-content:space-between;margin-top:6px;align-items:center;"><span style="font-size:14px;font-weight:700;color:#e05a18;">$289</span><div style="background:#e05a18;color:#fff;font-size:9px;font-weight:700;padding:4px 10px;border-radius:3px;">ADD</div></div></div></div><div style="border:1px solid rgba(240,236,228,.06);border-radius:10px;overflow:hidden;background:#111009;"><div style="height:130px;background:linear-gradient(135deg,#1a1814,#252018);display:flex;align-items:center;justify-content:center;font-size:48px;">👜</div><div style="padding:12px 14px;"><div style="font-size:13px;font-weight:600;color:#aaa;">Leather Bag</div><div style="display:flex;justify-content:space-between;margin-top:6px;align-items:center;"><span style="font-size:14px;font-weight:700;color:#e05a18;">$199</span><div style="background:#e05a18;color:#fff;font-size:9px;font-weight:700;padding:4px 10px;border-radius:3px;">ADD</div></div></div></div></div><div style="background:#111009;border:1px solid rgba(240,236,228,.06);border-radius:10px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;"><div style="font-size:13px;font-weight:600;color:#aaa;">Cart (3 items)</div><div style="background:#e05a18;color:#fff;font-size:12px;font-weight:700;padding:10px 24px;border-radius:4px;">Checkout — $637</div></div></div></div>`
-  }
+/* ── PROJECT MODAL ── */
+const projects={
+  skoolly:{title:'Skoolly',badge:'SaaS Platform',founder:true,url:'skoolly.app',tags:['PHP','MySQL','JavaScript','SaaS','No-Code Builder'],ghLink:'https://github.com/obedaaron',
+    preview:`<div style="background:#111;min-height:520px;font-family:sans-serif;color:#fff;padding:60px 48px;"><div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:14px;">Launch in 10 Minutes</div><div style="font-size:clamp(36px,6vw,64px);font-weight:900;line-height:.9;letter-spacing:-2px;">Your school portal,<br>minus the<br><span style='color:#ff4d1a;'>developer.</span></div><div style="display:flex;gap:12px;margin-top:28px;"><div style="background:#ff4d1a;color:#fff;padding:12px 28px;border-radius:100px;font-size:13px;font-weight:700;">Start Building Free</div><div style="border:1px solid rgba(255,255,255,.3);color:#fff;padding:12px 24px;border-radius:100px;font-size:13px;">Watch Demo</div></div><div style="display:flex;gap:40px;margin-top:48px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);"><div><div style="font-size:26px;font-weight:900;">10<span style='color:#ff4d1a;'>min</span></div><div style="font-size:11px;color:#888;margin-top:4px;">To Launch</div></div><div><div style="font-size:26px;font-weight:900;">$0</div><div style="font-size:11px;color:#888;margin-top:4px;">Dev Cost</div></div><div><div style="font-size:26px;font-weight:900;">100<span style='color:#ff4d1a;'>%</span></div><div style="font-size:11px;color:#888;margin-top:4px;">No-Code</div></div></div></div>`},
+  crm:{title:'Custom CRM Suite',badge:'SaaS',founder:false,url:'github.com/obedaaron',tags:['React','PHP','MySQL','REST API'],ghLink:'https://github.com/obedaaron',
+    preview:`<div style="background:#0a0907;min-height:520px;font-family:sans-serif;overflow:hidden;"><div style="background:#111009;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(240,236,228,.06);"><div style="font-size:18px;font-weight:800;color:#f0ece4;">CRM<span style='color:#e05a18;'>.</span></div></div><div style="display:grid;grid-template-columns:180px 1fr;min-height:460px;"><div style="background:#0d0b09;padding:20px 14px;border-right:1px solid rgba(240,236,228,.06);"><div style="padding:9px 12px;border-radius:5px;font-size:12px;color:#fff;background:rgba(224,90,24,.2);margin-bottom:4px;">Dashboard</div><div style="padding:9px 12px;font-size:12px;color:#444;margin-bottom:4px;">Contacts</div><div style="padding:9px 12px;font-size:12px;color:#444;">Reports</div></div><div style="padding:24px 28px;"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;"><div style="background:#111009;border:1px solid rgba(240,236,228,.06);border-radius:8px;padding:18px;"><div style="font-size:24px;font-weight:800;color:#f0ece4;">847</div><div style="font-size:11px;color:#555;">Contacts</div></div><div style="background:#111009;border:1px solid rgba(240,236,228,.06);border-radius:8px;padding:18px;"><div style="font-size:24px;font-weight:800;color:#f0ece4;">23</div><div style="font-size:11px;color:#555;">New</div></div><div style="background:#111009;border:1px solid rgba(240,236,228,.06);border-radius:8px;padding:18px;"><div style="font-size:24px;font-weight:800;color:#e05a18;">$94k</div><div style="font-size:11px;color:#555;">Pipeline</div></div></div></div></div></div>`},
+  api:{title:'Data Analytics API',badge:'AI / API',founder:false,url:'github.com/obedaaron',tags:['Python','FastAPI','PostgreSQL','ML'],ghLink:'https://github.com/obedaaron',
+    preview:`<div style="background:#0d1117;min-height:520px;font-family:'Courier New',monospace;color:#c9d1d9;padding:32px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;"><div style="background:#238636;color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:4px;font-family:sans-serif;">200 OK</div><div style="font-size:12px;color:#8b949e;">GET /api/v1/analytics/summary</div></div><div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:24px;font-size:12px;line-height:1.8;"><span style="color:#79c0ff;">{</span><br><span style="padding-left:20px;display:block;"><span style="color:#79c0ff;">"status"</span>: <span style="color:#a5d6ff;">"success"</span>,</span><span style="padding-left:20px;display:block;"><span style="color:#79c0ff;">"accuracy"</span>: <span style="color:#79c0ff;">0.943</span>,</span><span style="padding-left:20px;display:block;"><span style="color:#79c0ff;">"processing_ms"</span>: <span style="color:#79c0ff;">143</span></span><span style="color:#79c0ff;">}</span></div><div style="margin-top:20px;display:flex;gap:16px;"><div style="background:#161b22;border:1px solid #30363d;border-radius:6px;padding:12px 16px;font-size:11px;color:#8b949e;">⚡ 143ms</div><div style="background:#161b22;border:1px solid #30363d;border-radius:6px;padding:12px 16px;font-size:11px;color:#8b949e;">🔒 JWT</div><div style="background:#161b22;border:1px solid #30363d;border-radius:6px;padding:12px 16px;font-size:11px;color:#8b949e;">📊 ML</div></div></div>`},
+  ecom:{title:'E-Commerce Platform',badge:'E-Commerce',founder:false,url:'github.com/obedaaron',tags:['PHP','JavaScript','MySQL','MVC'],ghLink:'https://github.com/obedaaron',
+    preview:`<div style="background:#0a0907;min-height:520px;font-family:sans-serif;color:#f0ece4;overflow:hidden;"><div style="background:#111009;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(240,236,228,.06);"><div style="font-size:16px;font-weight:800;color:#f0ece4;">SHOP<span style='color:#e05a18;'>.</span></div><div style="color:#f0ece4;font-size:13px;">🛍 3</div></div><div style="padding:24px 32px;"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;"><div style="border:1px solid rgba(240,236,228,.06);border-radius:10px;overflow:hidden;background:#111009;"><div style="height:110px;background:linear-gradient(135deg,#1a1814,#252018);display:flex;align-items:center;justify-content:center;font-size:40px;">👟</div><div style="padding:12px;"><div style="font-size:12px;color:#aaa;">Sneakers</div><div style="font-size:14px;font-weight:700;color:#e05a18;">$149</div></div></div><div style="border:1px solid rgba(240,236,228,.06);border-radius:10px;overflow:hidden;background:#111009;"><div style="height:110px;background:linear-gradient(135deg,#1a1814,#252018);display:flex;align-items:center;justify-content:center;font-size:40px;">⌚</div><div style="padding:12px;"><div style="font-size:12px;color:#aaa;">Watch</div><div style="font-size:14px;font-weight:700;color:#e05a18;">$289</div></div></div><div style="border:1px solid rgba(240,236,228,.06);border-radius:10px;overflow:hidden;background:#111009;"><div style="height:110px;background:linear-gradient(135deg,#1a1814,#252018);display:flex;align-items:center;justify-content:center;font-size:40px;">👜</div><div style="padding:12px;"><div style="font-size:12px;color:#aaa;">Bag</div><div style="font-size:14px;font-weight:700;color:#e05a18;">$199</div></div></div></div><div style="background:#111009;border:1px solid rgba(240,236,228,.06);border-radius:10px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;"><div style="font-size:13px;color:#aaa;">Cart (3 items)</div><div style="background:#e05a18;color:#fff;font-size:12px;font-weight:700;padding:10px 24px;border-radius:4px;">Checkout — $637</div></div></div></div>`}
 };
 
-function openProjModal(key) {
-  const p = projects[key];
-  if (!p) return;
-  document.getElementById('pm-title').textContent = p.title;
-  document.getElementById('pm-badge').textContent = p.badge;
-  const founder = document.getElementById('pm-founder');
-  founder.style.display = p.founder ? 'inline-flex' : 'none';
-  document.getElementById('pm-url').textContent = p.url;
-  document.getElementById('pm-preview-area').innerHTML = p.preview;
-  document.getElementById('pm-tags').innerHTML = p.tags.map(t => `<span class="pm-tag">${t}</span>`).join('');
-  document.getElementById('pm-links').innerHTML = `<a href="${p.ghLink}" target="_blank" class="pm-link outline"><i class="fa-brands fa-github"></i> GitHub</a>`;
+function openProjModal(key){
+  const p=projects[key]; if(!p) return;
+  document.getElementById('pm-title').textContent=p.title;
+  document.getElementById('pm-badge').textContent=p.badge;
+  document.getElementById('pm-founder').style.display=p.founder?'inline-flex':'none';
+  document.getElementById('pm-url').textContent=p.url;
+  document.getElementById('pm-preview-area').innerHTML=p.preview;
+  document.getElementById('pm-tags').innerHTML=p.tags.map(t=>`<span class="pm-tag">${t}</span>`).join('');
+  document.getElementById('pm-links').innerHTML=`<a href="${p.ghLink}" target="_blank" class="pm-link outline"><i class="fa-brands fa-github"></i> GitHub</a>`;
   document.getElementById('proj-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
-
-function closeProjModal() {
+function closeProjModal(){
   document.getElementById('proj-modal').classList.remove('open');
-  document.getElementById('pm-preview-area').innerHTML = '';
-  document.body.style.overflow = '';
+  document.getElementById('pm-preview-area').innerHTML='';
+  document.body.style.overflow='';
 }
+document.getElementById('proj-modal').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeProjModal(); });
 
-document.getElementById('proj-modal').addEventListener('click', e => {
-  if (e.target === e.currentTarget) closeProjModal();
-});
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeProjModal(); closeModal(); }
-});
+/* ── CONTACT MODAL ── */
+function openModal(){ document.getElementById('modal').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(){ document.getElementById('modal').classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('modal').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeModal(); });
+function submitForm(e){
+  e.preventDefault();
+  const d=Object.fromEntries(new FormData(e.target));
+  const b=`Name: ${d.name}%0D%0AEmail: ${d.email}%0D%0AType: ${d.project_type}%0D%0ABudget: ${d.budget}%0D%0A%0D%0A${d.description}`;
+  window.location.href=`mailto:obedkyuneaaron1212@gmail.com?subject=Project Brief: ${d.project_type}&body=${b}`;
+  closeModal();
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeProjModal(); closeModal(); closeMobileMenu(); } });
 </script>
 </body>
 </html>
