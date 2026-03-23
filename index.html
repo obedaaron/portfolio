@@ -70,29 +70,44 @@ nav {
   background:var(--ink); border-radius:2px;
   transition:all .3s;
 }
+
 @media(max-width:768px) {
+  .desktop-cta { display:none; }
   .nav-menu-btn { display:flex; }
-  .nav-mobile-open .nav-links {
-    display:flex !important; flex-direction:column; gap:0;
-    position:fixed; top:72px; left:0; right:0; bottom:0;
-    background:#0a0907 !important;
-    -webkit-backdrop-filter:none !important;
-    backdrop-filter:none !important;
+
+  .nav-links {
+    display:none;
+    flex-direction:column;
+    gap:0;
+    position:fixed;
+    top:72px; left:0; right:0; bottom:0;
+    background:#0a0907;
     padding:32px 24px;
-    z-index:99; border-top:1px solid var(--rule);
-    opacity:1;
+    z-index:99;
+    border-top:1px solid var(--rule);
+    list-style:none;
   }
-  .nav-mobile-open .nav-links li { border-bottom:1px solid var(--rule); }
-  .nav-mobile-open .nav-links a {
+  .nav-links.mobile-open {
+    display:flex;
+  }
+  .nav-links li {
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-links a {
     display:block; padding:18px 0;
     font-size:13px; letter-spacing:.18em; color:var(--muted);
   }
-  .nav-mobile-open .nav-links a:hover { color:var(--ink); }
-  .nav-cta { display:none; }
-  .nav-mobile-open .nav-cta {
-    display:inline-flex !important; margin-top:24px;
-    width:100%; justify-content:center; padding:14px;
+  .nav-links a:hover { color:var(--ink); }
+  .nav-links li:last-child {
+    border-bottom:none;
+    padding-top:24px;
   }
+  .nav-links .nav-cta {
+    display:inline-flex;
+    width:100%; justify-content:center; padding:14px;
+    cursor:auto;
+  }
+}
   .nav-mobile-open {
     background:#0a0907 !important;
     backdrop-filter:none !important;
@@ -465,13 +480,14 @@ footer p { font-size:9.5px; font-weight:600; letter-spacing:.15em; text-transfor
 
 <nav>
   <a href="#" class="nav-logo">AARON<span class="nav-logo-dot">.</span></a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#projects">Works</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><button class="nav-cta" onclick="openModal()">Start a Project</button></li>
   </ul>
-  <button class="nav-cta" onclick="openModal()">Start a Project</button>
+  <button class="nav-cta desktop-cta" onclick="openModal()">Start a Project</button>
   <button class="nav-menu-btn" id="nav-menu-btn" onclick="toggleNav()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
@@ -934,11 +950,11 @@ function submitForm(e) {
 }
 
 function toggleNav() {
-  document.querySelector('nav').classList.toggle('nav-mobile-open');
+  document.getElementById('nav-links').classList.toggle('mobile-open');
 }
 document.querySelectorAll('.nav-links a').forEach(a => {
   a.addEventListener('click', () => {
-    document.querySelector('nav').classList.remove('nav-mobile-open');
+    document.getElementById('nav-links').classList.remove('mobile-open');
   });
 });
 
